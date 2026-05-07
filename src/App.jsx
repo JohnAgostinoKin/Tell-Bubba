@@ -9,7 +9,6 @@ import {
   ShieldCheck,
   ArrowRight,
   CheckCircle2,
-  Sparkles,
   Mail,
   Megaphone,
   FileText,
@@ -65,7 +64,7 @@ const steps = [
   {
     title: "Bubba Writes the Message",
     text: "Your frustration becomes a calm, clear, professional complaint or feedback note a company can actually act on.",
-    icon: Sparkles,
+    icon: FileText,
   },
   {
     title: "You Approve Before Anything Sends",
@@ -277,17 +276,19 @@ function App() {
         </section>
       )}
 
-      <section className="relative px-6 pb-20 pt-8 sm:px-10 lg:px-16">
+      <section className="relative px-6 pb-16 pt-8 sm:px-10 lg:px-16 lg:pb-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(249,115,22,.25),_transparent_32%),radial-gradient(circle_at_70%_20%,_rgba(59,130,246,.22),_transparent_30%),linear-gradient(180deg,_#020617_0%,_#0f172a_48%,_#111827_100%)]" />
 
         <div className="relative mx-auto max-w-7xl">
-          <nav className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur">
+          <nav className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur sm:px-5">
             <div className="flex items-center gap-3">
-              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-orange-500 font-black text-slate-950 shadow-lg shadow-orange-500/20">
+              <div className="grid h-10 w-10 place-items-center rounded-2xl bg-orange-500 font-black text-slate-950 shadow-lg shadow-orange-500/20 sm:h-11 sm:w-11">
                 B
               </div>
               <div>
-                <p className="text-xl font-black tracking-tight">Tell Bubba</p>
+                <p className="text-lg font-black tracking-tight sm:text-xl">
+                  Tell Bubba
+                </p>
                 <p className="text-xs text-slate-300">at BubbaFix.com</p>
               </div>
             </div>
@@ -309,40 +310,42 @@ function App() {
 
             <a
               href="#early"
-              className="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-orange-200"
+              className="rounded-full bg-white px-4 py-2 text-xs font-bold text-slate-950 transition hover:bg-orange-200 sm:px-5 sm:py-2.5 sm:text-sm"
             >
               Early Access
             </a>
           </nav>
 
-          <div className="grid items-center gap-12 pt-20 lg:grid-cols-[1.05fr_.95fr] lg:pt-24">
+          <div className="grid items-center gap-12 pt-14 lg:grid-cols-[1.05fr_.95fr] lg:pt-24">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-            <div className="mb-6 flex flex-nowrap justify-center gap-1.5 sm:justify-start sm:gap-2">
-  {["Keep Calm", "Skip The Music On Hold", "Let Bubba Fix It"].map((chip) => (
-    <span
-      key={chip}
-      className="whitespace-nowrap rounded-full border border-orange-300/30 bg-orange-400/10 px-2.5 py-1.5 text-[11px] font-bold text-orange-100 sm:px-4 sm:py-2 sm:text-sm"
-    >
-      {chip}
-    </span>
-  ))}
-</div>
+              <div className="mb-6 flex flex-nowrap justify-center gap-1.5 sm:gap-2 md:justify-start">
+                {["Keep Calm", "Skip The Music On Hold", "Let Bubba Fix It"].map(
+                  (chip) => (
+                    <span
+                      key={chip}
+                      className="whitespace-nowrap rounded-full border border-orange-300/30 bg-orange-400/10 px-2.5 py-1.5 text-[11px] font-bold text-orange-100 sm:px-4 sm:py-2 sm:text-sm"
+                    >
+                      {chip}
+                    </span>
+                  )
+                )}
+              </div>
 
-              <h1 className="max-w-4xl text-4xl font-black leading-[.98] tracking-tight sm:text-6xl lg:text-7xl">
+              <h1 className="max-w-4xl text-center text-4xl font-black leading-[.98] tracking-tight sm:text-6xl md:text-left lg:text-7xl">
                 Tell Bubba What Happened
               </h1>
 
-              <p className="mt-6 max-w-2xl text-base leading-7 text-slate-200 sm:text-xl sm:leading-8">
+              <p className="mt-6 max-w-2xl text-center text-base leading-7 text-slate-200 sm:text-xl sm:leading-8 md:text-left">
                 Bubba turns complaints, problems, and customer feedback into
                 clear messages companies can actually act on — then sends them
                 with your approval and helps follow up.
               </p>
 
-              <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row md:justify-start">
                 <a
                   href="#early"
                   className="group inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-7 py-4 text-base font-black text-slate-950 shadow-xl shadow-orange-500/20 transition hover:bg-orange-400"
@@ -356,13 +359,13 @@ function App() {
 
                 <a
                   href="#how"
-                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 px-7 py-4 text-base font-bold text-white transition hover:bg-white/15"
+                  className="hidden items-center justify-center rounded-full border border-white/15 bg-white/10 px-7 py-4 text-base font-bold text-white transition hover:bg-white/15 md:inline-flex"
                 >
                   See How Bubba Works
                 </a>
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-8 hidden flex-wrap gap-3 md:flex">
                 {examples.map((item) => (
                   <span
                     key={item}
@@ -378,7 +381,7 @@ function App() {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.65, delay: 0.1 }}
-              className="relative"
+              className="relative hidden md:block"
             >
               <div className="absolute -inset-4 rounded-[2rem] bg-orange-500/20 blur-3xl" />
 
@@ -450,57 +453,62 @@ function App() {
           </div>
         </div>
       </section>
+
       <section className="px-5 py-12 md:hidden">
-  <div className="mx-auto max-w-md">
-    <div className="rounded-[1.75rem] border border-white/10 bg-white/[.04] p-5">
-      <p className="text-sm font-black uppercase tracking-widest text-orange-400">
-        Start Here
-      </p>
-      <h2 className="mt-3 text-3xl font-black leading-tight">
-        Complaint or Feedback, Bubba Helps You Say It Right.
-      </h2>
-      <p className="mt-4 text-base leading-7 text-slate-300">
-        Tell Bubba what happened. Bubba turns it into a clear message,
-        helps send it with your approval, and keeps the issue moving.
-      </p>
-    </div>
-
-    <div className="mt-5 grid gap-4">
-      {mobileEssentials.map((item) => {
-        const Icon = item.icon;
-        return (
-          <div
-            key={item.title}
-            className="rounded-2xl border border-white/10 bg-slate-900/80 p-5 shadow-lg"
-          >
-            <div className="flex items-start gap-4">
-              <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-orange-500/15 text-orange-300">
-                <Icon size={22} />
-              </div>
-              <div>
-                <h3 className="text-lg font-black">{item.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
-                  {item.text}
-                </p>
-              </div>
-            </div>
+        <div className="mx-auto max-w-md">
+          <div className="rounded-[1.75rem] border border-white/10 bg-white/[.04] p-5">
+            <p className="text-center text-sm font-black uppercase tracking-widest text-orange-400">
+              Start Here
+            </p>
+            <h2 className="mt-3 text-center text-3xl font-black leading-tight">
+              Complaint or feedback, Bubba helps you say it right.
+            </h2>
+            <p className="mt-4 text-center text-base leading-7 text-slate-300">
+              Tell Bubba what happened. Bubba turns it into a clear message,
+              helps send it with your approval, and keeps the issue moving.
+            </p>
           </div>
-        );
-      })}
-    </div>
 
-    <div className="mt-5 rounded-2xl border border-emerald-300/15 bg-emerald-500/10 p-5">
-      <p className="text-sm font-black text-emerald-200">
-        Bubba never sends without your approval.
-      </p>
-      <p className="mt-2 text-sm leading-6 text-slate-300">
-        You review the message, confirm the facts, and decide what gets sent.
-      </p>
-    </div>
-  </div>
-</section>
+          <div className="mt-5 grid gap-4">
+            {mobileEssentials.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.title}
+                  className="rounded-2xl border border-white/10 bg-slate-900/80 p-5 shadow-lg"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-orange-500/15 text-orange-300">
+                      <Icon size={22} />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-black">{item.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-300">
+                        {item.text}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
 
-      <section id="how" className="hidden px-6 py-20 sm:px-10 md:block lg:px-16">
+          <div className="mt-5 rounded-2xl border border-emerald-300/15 bg-emerald-500/10 p-5">
+            <p className="text-sm font-black text-emerald-200">
+              Bubba never sends without your approval.
+            </p>
+            <p className="mt-2 text-sm leading-6 text-slate-300">
+              You review the message, confirm the facts, and decide what gets
+              sent.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="how"
+        className="hidden px-6 py-20 sm:px-10 md:block lg:px-16"
+      >
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-sm font-black uppercase tracking-widest text-orange-400">
@@ -540,7 +548,10 @@ function App() {
         </div>
       </section>
 
-      <section id="features" className="hidden px-6 py-20 sm:px-10 md:block lg:px-16">
+      <section
+        id="features"
+        className="hidden px-6 py-20 sm:px-10 md:block lg:px-16"
+      >
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
             <div>
@@ -580,7 +591,7 @@ function App() {
         </div>
       </section>
 
-      <section className="px-6 py-20 sm:px-10 lg:px-16">
+      <section className="hidden px-6 py-20 sm:px-10 md:block lg:px-16">
         <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-slate-900/70 p-6 shadow-2xl sm:p-10 lg:p-14">
           <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
             <div>
@@ -606,7 +617,10 @@ function App() {
         </div>
       </section>
 
-      <section id="feedback" className="hidden px-6 py-20 sm:px-10 md:block lg:px-16">
+      <section
+        id="feedback"
+        className="hidden px-6 py-20 sm:px-10 md:block lg:px-16"
+      >
         <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-gradient-to-br from-slate-900 to-slate-800 p-6 shadow-2xl sm:p-10 lg:p-14">
           <div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
             <div>
@@ -692,7 +706,10 @@ function App() {
         </div>
       </section>
 
-      <section id="business" className="hidden px-6 py-20 sm:px-10 md:block lg:px-16">
+      <section
+        id="business"
+        className="hidden px-6 py-20 sm:px-10 md:block lg:px-16"
+      >
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="text-sm font-black uppercase tracking-widest text-orange-400">
@@ -731,10 +748,10 @@ function App() {
                 <Building2 size={28} />
               </div>
               <div>
-                <p className="text-2xl font-black">
-                  Business Dashboard
+                <p className="text-2xl font-black">Business Dashboard</p>
+                <p className="text-slate-400">
+                  For Companies and Organizations
                 </p>
-                <p className="text-slate-400">For Companies and Organizations</p>
               </div>
             </div>
 
@@ -810,7 +827,7 @@ function App() {
         </div>
       </section>
 
-      <section id="early" className="px-6 py-24 sm:px-10 lg:px-16">
+      <section id="early" className="px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
         <div className="mx-auto max-w-4xl rounded-[2rem] border border-orange-300/20 bg-orange-500 p-8 text-center text-slate-950 shadow-2xl shadow-orange-500/20 sm:p-12">
           <p className="text-sm font-black uppercase tracking-widest">
             Early access
@@ -847,7 +864,9 @@ function App() {
           </form>
 
           {submitted && (
-            <p className="mt-4 font-black">You’re on the list. Bubba’s got you.</p>
+            <p className="mt-4 font-black">
+              You’re on the list. Bubba’s got you.
+            </p>
           )}
         </div>
       </section>
@@ -855,7 +874,7 @@ function App() {
       <footer className="border-t border-white/10 px-6 py-7 sm:px-10 lg:px-16">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-            <div className="shrink-0">
+            <div className="shrink-0 text-center lg:text-left">
               <p className="text-lg font-black text-white">
                 Tell Bubba{" "}
                 <span className="text-xs font-medium text-slate-400">
@@ -864,7 +883,7 @@ function App() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-x-3 gap-y-2 text-sm font-medium text-slate-300 lg:justify-end">
+            <div className="flex flex-wrap justify-center gap-x-3 gap-y-2 text-sm font-medium text-slate-300 lg:justify-end">
               <button
                 onClick={() => openLegal("privacy")}
                 className="hover:text-orange-300"
@@ -910,7 +929,10 @@ function App() {
           </div>
 
           <p className="mt-5 text-center text-xs leading-5 text-slate-500">
-            © {new Date().getFullYear()} Tell Bubba. All rights reserved. Tell Bubba is not a law firm and does not provide legal advice. Bubba helps users organize complaints, feedback, and resolution requests. Messages are sent only with user approval.
+            © {new Date().getFullYear()} Tell Bubba. All rights reserved. Tell
+            Bubba is not a law firm and does not provide legal advice. Bubba
+            helps users organize complaints, feedback, and resolution requests.
+            Messages are sent only with user approval.
           </p>
         </div>
       </footer>
