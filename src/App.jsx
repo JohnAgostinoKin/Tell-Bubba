@@ -505,6 +505,44 @@ function App() {
         </div>
       </section>
 
+      <section className="px-5 pb-12 md:hidden">
+  <div className="mx-auto max-w-md">
+    <div className="rounded-[1.75rem] border border-orange-300/20 bg-orange-400/10 p-5">
+      <p className="text-center text-sm font-black uppercase tracking-widest text-orange-400">
+        What Bubba Helps With
+      </p>
+
+      <div className="mt-5 grid grid-cols-2 gap-3">
+        {[
+          "Refunds",
+          "Cancellations",
+          "Overcharges",
+          "Bad Service",
+          "Billing Issues",
+          "Feedback",
+        ].map((item) => (
+          <div
+            key={item}
+            className="rounded-2xl border border-white/10 bg-slate-950/60 px-3 py-3 text-center text-sm font-bold text-slate-200"
+          >
+            {item}
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-5 rounded-2xl border border-white/10 bg-slate-950/60 p-5">
+        <p className="text-center text-lg font-black text-white">
+          Before You Give Up, Tell Bubba.
+        </p>
+        <p className="mt-3 text-center text-sm leading-6 text-slate-300">
+          Bubba helps you turn frustration into a clear request, useful feedback,
+          or a documented next step.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
       <section
         id="how"
         className="hidden px-6 py-20 sm:px-10 md:block lg:px-16"
