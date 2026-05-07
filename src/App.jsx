@@ -323,7 +323,7 @@ function App() {
               transition={{ duration: 0.6 }}
             >
               <div className="mb-6 flex flex-nowrap justify-center gap-1.5 sm:gap-2 md:justify-start">
-                {["Keep Calm", "Skip The Music On Hold", "Let Bubba Fix It"].map(
+                {["Stay Calm", "Skip The Music On Hold", "Let Bubba Fix It"].map(
                   (chip) => (
                     <span
                       key={chip}
