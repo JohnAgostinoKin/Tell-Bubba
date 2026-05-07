@@ -277,9 +277,31 @@ function App() {
         <div className="relative mx-auto max-w-7xl">
           <nav className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur sm:px-5">
             <div className="flex items-center gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-2xl bg-orange-500 font-black text-slate-950 shadow-lg shadow-orange-500/20 sm:h-11 sm:w-11">
-                B
-              </div>
+              <div className="h-10 w-10 sm:h-11 sm:w-11">
+  <svg
+    viewBox="0 0 64 64"
+    className="h-full w-full"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <rect width="64" height="64" rx="18" fill="#f97316" />
+    <path
+      d="M15 16h34c3.3 0 6 2.7 6 6v18c0 3.3-2.7 6-6 6H31l-11 9v-9h-5c-3.3 0-6-2.7-6-6V22c0-3.3 2.7-6 6-6z"
+      fill="#020617"
+    />
+    <text
+      x="32"
+      y="39"
+      textAnchor="middle"
+      fontFamily="Arial, Helvetica, sans-serif"
+      fontSize="25"
+      fontWeight="900"
+      fill="#ffffff"
+    >
+      B
+    </text>
+  </svg>
+</div>
               <div>
                 <p className="text-lg font-black tracking-tight sm:text-xl">
                   Tell Bubba
