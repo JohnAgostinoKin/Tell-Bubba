@@ -321,13 +321,12 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="mb-6 flex flex-wrap gap-2">
+             <div className="mb-6 flex flex-wrap gap-2">
   {["Keep Calm", "Skip The Music On Hold", "Let Bubba Fix It"].map((chip) => (
     <span
       key={chip}
-      className="inline-flex items-center gap-2 rounded-full border border-orange-300/30 bg-orange-400/10 px-4 py-2 text-sm font-bold text-orange-100"
+      className="inline-flex items-center rounded-full border border-orange-300/30 bg-orange-400/10 px-4 py-2 text-sm font-bold text-orange-100"
     >
-      <Sparkles size={15} />
       {chip}
     </span>
   ))}
