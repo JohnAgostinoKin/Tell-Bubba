@@ -321,10 +321,17 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-300/30 bg-orange-400/10 px-4 py-2 text-sm font-semibold text-orange-100">
-                <Sparkles size={16} /> Before frustration sets in, Tell
-                Bubba.
-              </div>
+              <div className="mb-6 flex flex-wrap gap-2">
+  {["Keep Calm", "Skip The Music On Hold", "Let Bubba Fix It"].map((chip) => (
+    <span
+      key={chip}
+      className="inline-flex items-center gap-2 rounded-full border border-orange-300/30 bg-orange-400/10 px-4 py-2 text-sm font-bold text-orange-100"
+    >
+      <Sparkles size={15} />
+      {chip}
+    </span>
+  ))}
+</div>
 
               <h1 className="max-w-4xl text-4xl font-black leading-[.98] tracking-tight sm:text-6xl lg:text-7xl">
                 Tell Bubba What Happened
@@ -451,7 +458,7 @@ function App() {
         Start Here
       </p>
       <h2 className="mt-3 text-3xl font-black leading-tight">
-        Complaint or feedback, Bubba helps you say it right.
+        Complaint or Feedback, Bubba Helps You Say It Right.
       </h2>
       <p className="mt-4 text-base leading-7 text-slate-300">
         Tell Bubba what happened. Bubba turns it into a clear message,
