@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useForm } from "@formspree/react";
 import {
   MessageSquareText,
   Send,
@@ -226,15 +227,9 @@ const legalPages = {
 };
 
 function App() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [activeLegal, setActiveLegal] = useState(null);
+    const [activeLegal, setActiveLegal] = useState(null);
+  const [state, handleSubmit] = useForm("xqendbry");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-    setSubmitted(true);
-  };
 
   const openLegal = (page) => {
     setActiveLegal(page);
@@ -866,48 +861,90 @@ function App() {
       </section>
 
       <section id="early" className="px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
-        <div className="mx-auto max-w-4xl rounded-[2rem] border border-orange-300/20 bg-orange-500 p-8 text-center text-slate-950 shadow-2xl shadow-orange-500/20 sm:p-12">
-          <p className="text-sm font-black uppercase tracking-widest">
-            Early access
-          </p>
-          <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
-            Be First to Tell Bubba
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-900/80">
-            Join the early list for customers, businesses, and testers who want
-            a smarter way to handle complaints and feedback.
-          </p>
+  <div className="mx-auto max-w-4xl rounded-[2rem] border border-orange-300/20 bg-orange-500 p-8 text-center text-slate-950 shadow-2xl shadow-orange-500/20 sm:p-12">
+    <p className="text-sm font-black uppercase tracking-widest">
+      Early Access
+    </p>
 
-          <form
-            onSubmit={handleSubmit}
-            className="mx-auto mt-8 flex max-w-xl flex-col gap-3 sm:flex-row"
-          >
-            <div className="relative flex-1">
-              <Mail
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"
-                size={20}
-              />
-              <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                placeholder="Enter your email"
-                className="h-14 w-full rounded-full border-0 bg-white pl-12 pr-5 font-semibold text-slate-950 outline-none ring-2 ring-transparent transition focus:ring-slate-950"
-              />
-            </div>
+    <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
+      Be First to Tell Bubba
+    </h2>
 
-            <button className="h-14 rounded-full bg-slate-950 px-7 font-black text-white transition hover:bg-slate-800">
-              Join
-            </button>
-          </form>
+    <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-900/80">
+      Join the early list for customers, businesses, and testers who want a
+      smarter way to handle complaints, feedback, and frustrating customer
+      service problems.
+    </p>
 
-          {submitted && (
-            <p className="mt-4 font-black">
-              You’re on the list. Bubba’s got you.
-            </p>
-          )}
-        </div>
-      </section>
+    <form
+      onSubmit={handleSubmit}
+      className="mx-auto mt-8 grid max-w-2xl gap-3 text-left"
+    >
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="Email address"
+        className="h-14 w-full rounded-full border-0 bg-white px-5 font-semibold text-slate-950 outline-none ring-2 ring-transparent transition focus:ring-slate-950"
+      />
+
+      <select
+        name="user_type"
+        required
+        defaultValue=""
+        className="h-14 w-full rounded-full border-0 bg-white px-5 font-semibold text-slate-950 outline-none ring-2 ring-transparent transition focus:ring-slate-950"
+      >
+        <option value="" disabled>
+          I am a...
+        </option>
+        <option value="Customer">Customer</option>
+        <option value="Business">Business</option>
+        <option value="Tester">Tester</option>
+      </select>
+
+      <select
+        name="interest_type"
+        required
+        defaultValue=""
+        className="h-14 w-full rounded-full border-0 bg-white px-5 font-semibold text-slate-950 outline-none ring-2 ring-transparent transition focus:ring-slate-950"
+      >
+        <option value="" disabled>
+          I’m interested in...
+        </option>
+        <option value="Fixing a Problem">Fixing a Problem</option>
+        <option value="Sending Feedback">Sending Feedback</option>
+        <option value="Business Tools">Business Tools</option>
+        <option value="General Early Access">General Early Access</option>
+      </select>
+
+      <textarea
+        name="message"
+        rows="4"
+        placeholder="Optional: Tell Bubba what you would use this for"
+        className="w-full rounded-3xl border-0 bg-white px-5 py-4 font-semibold text-slate-950 outline-none ring-2 ring-transparent transition focus:ring-slate-950"
+      />
+
+      <button
+        type="submit"
+        disabled={state.submitting}
+        className="h-14 rounded-full bg-slate-950 px-7 font-black text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {state.submitting ? "Sending..." : "Join Waitlist"}
+      </button>
+
+      {state.succeeded && (
+        <p className="text-center font-black text-slate-950">
+          You’re on the list. Bubba’s got you.
+        </p>
+      )}
+    </form>
+
+    <p className="mx-auto mt-5 max-w-xl text-center text-sm font-semibold leading-6 text-slate-900/70">
+      Bubba will never send anything on your behalf without your review and
+      approval.
+    </p>
+  </div>
+</section>
 
       <footer className="border-t border-white/10 px-6 py-7 sm:px-10 lg:px-16">
         <div className="mx-auto max-w-7xl">
