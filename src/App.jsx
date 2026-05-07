@@ -304,7 +304,7 @@ function App() {
 </div>
               <div>
                 <p className="text-lg font-black tracking-tight sm:text-xl">
-                  Tell Bubba
+                  Tell Bubba™
                 </p>
                 <p className="text-xs text-slate-300">at BubbaFix.com</p>
               </div>
@@ -973,7 +973,7 @@ function App() {
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div className="shrink-0 text-center lg:text-left">
               <p className="text-lg font-black text-white">
-                Tell Bubba{" "}
+                Tell Bubba™{" "}
                 <span className="text-xs font-medium text-slate-400">
                   at BubbaFix.com
                 </span>
