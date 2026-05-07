@@ -127,6 +127,24 @@ const canHandle = [
   "Constructive Suggestions",
 ];
 
+const mobileEssentials = [
+  {
+    title: "Fix a Problem",
+    text: "Refunds, cancellations, overcharges, bad service, billing issues, damaged products, and unresolved support problems.",
+    icon: ClipboardCheck,
+  },
+  {
+    title: "Send Feedback",
+    text: "Not a full complaint? Bubba helps send useful feedback, suggestions, compliments, or small frustrations.",
+    icon: Megaphone,
+  },
+  {
+    title: "Approve & Send",
+    text: "Bubba drafts the message, but nothing sends until you review and approve it.",
+    icon: ShieldCheck,
+  },
+];
+
 const faqs = [
   {
     q: "Does Bubba send messages without my approval?",
@@ -308,11 +326,11 @@ function App() {
                 Bubba.
               </div>
 
-              <h1 className="max-w-4xl text-5xl font-black leading-[.95] tracking-tight sm:text-6xl lg:text-7xl">
+              <h1 className="max-w-4xl text-4xl font-black leading-[.98] tracking-tight sm:text-6xl lg:text-7xl">
                 Tell Bubba What Happened
               </h1>
 
-              <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
+              <p className="mt-6 max-w-2xl text-base leading-7 text-slate-200 sm:text-xl sm:leading-8">
                 Bubba turns complaints, problems, and customer feedback into
                 clear messages companies can actually act on — then sends them
                 with your approval and helps follow up.
@@ -426,8 +444,57 @@ function App() {
           </div>
         </div>
       </section>
+      <section className="px-5 py-12 md:hidden">
+  <div className="mx-auto max-w-md">
+    <div className="rounded-[1.75rem] border border-white/10 bg-white/[.04] p-5">
+      <p className="text-sm font-black uppercase tracking-widest text-orange-400">
+        Start Here
+      </p>
+      <h2 className="mt-3 text-3xl font-black leading-tight">
+        Complaint or feedback, Bubba helps you say it right.
+      </h2>
+      <p className="mt-4 text-base leading-7 text-slate-300">
+        Tell Bubba what happened. Bubba turns it into a clear message,
+        helps send it with your approval, and keeps the issue moving.
+      </p>
+    </div>
 
-      <section id="how" className="px-6 py-20 sm:px-10 lg:px-16">
+    <div className="mt-5 grid gap-4">
+      {mobileEssentials.map((item) => {
+        const Icon = item.icon;
+        return (
+          <div
+            key={item.title}
+            className="rounded-2xl border border-white/10 bg-slate-900/80 p-5 shadow-lg"
+          >
+            <div className="flex items-start gap-4">
+              <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-orange-500/15 text-orange-300">
+                <Icon size={22} />
+              </div>
+              <div>
+                <h3 className="text-lg font-black">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">
+                  {item.text}
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <div className="mt-5 rounded-2xl border border-emerald-300/15 bg-emerald-500/10 p-5">
+      <p className="text-sm font-black text-emerald-200">
+        Bubba never sends without your approval.
+      </p>
+      <p className="mt-2 text-sm leading-6 text-slate-300">
+        You review the message, confirm the facts, and decide what gets sent.
+      </p>
+    </div>
+  </div>
+</section>
+
+      <section id="how" className="hidden px-6 py-20 sm:px-10 md:block lg:px-16">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-sm font-black uppercase tracking-widest text-orange-400">
@@ -467,7 +534,7 @@ function App() {
         </div>
       </section>
 
-      <section id="features" className="px-6 py-20 sm:px-10 lg:px-16">
+      <section id="features" className="hidden px-6 py-20 sm:px-10 md:block lg:px-16">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
             <div>
@@ -533,7 +600,7 @@ function App() {
         </div>
       </section>
 
-      <section id="feedback" className="px-6 py-20 sm:px-10 lg:px-16">
+      <section id="feedback" className="hidden px-6 py-20 sm:px-10 md:block lg:px-16">
         <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-gradient-to-br from-slate-900 to-slate-800 p-6 shadow-2xl sm:p-10 lg:p-14">
           <div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
             <div>
@@ -586,7 +653,7 @@ function App() {
         </div>
       </section>
 
-      <section className="px-6 py-20 sm:px-10 lg:px-16">
+      <section className="hidden px-6 py-20 sm:px-10 md:block lg:px-16">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-3">
           <div className="rounded-[2rem] border border-white/10 bg-blue-500/10 p-7 ring-1 ring-blue-300/10">
             <AlertTriangle className="text-blue-200" size={34} />
@@ -619,7 +686,7 @@ function App() {
         </div>
       </section>
 
-      <section id="business" className="px-6 py-20 sm:px-10 lg:px-16">
+      <section id="business" className="hidden px-6 py-20 sm:px-10 md:block lg:px-16">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="text-sm font-black uppercase tracking-widest text-orange-400">
@@ -704,7 +771,7 @@ function App() {
         </div>
       </section>
 
-      <section className="px-6 py-20 sm:px-10 lg:px-16">
+      <section className="hidden px-6 py-20 sm:px-10 md:block lg:px-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <p className="text-sm font-black uppercase tracking-widest text-orange-400">
