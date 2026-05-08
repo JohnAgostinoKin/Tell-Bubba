@@ -228,8 +228,8 @@ const legalPages = {
 
 function App() {
     const [activeLegal, setActiveLegal] = useState(null);
-  const [state, handleSubmit] = useForm("xqendbry");
-
+ const [waitlistState, handleWaitlistSubmit] = useForm("xqendbry");
+const [tryState, handleTrySubmit] = useForm("xqendbry");
 
   const openLegal = (page) => {
     setActiveLegal(page);
