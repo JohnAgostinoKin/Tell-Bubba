@@ -949,9 +949,72 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
       )}
     </form>
 
-    <p className="mx-auto mt-5 max-w-xl text-center text-sm font-semibold leading-6 text-slate-400">
-      Nothing is sent to a company from this form. Tell Bubba is not a law firm
-      and does not provide legal advice.
+    <div className="mx-auto mt-6 max-w-2xl rounded-3xl border border-emerald-300/20 bg-emerald-500/10 p-5 text-left">
+  <p className="font-black text-emerald-200">Your Case Stays Contained</p>
+
+  <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
+    Nothing is sent to a company from this form. Bubba never sends anything on
+    your behalf without your review and approval.
+  </p>
+
+  <p className="mt-2 text-xs leading-6 text-slate-400">
+    Only share what is needed to explain the issue. Do not submit passwords,
+    full credit card numbers, Social Security numbers, or unnecessary sensitive
+    information. Tell Bubba is not a law firm and does not provide legal advice.
+  </p>
+</div>
+  </div>
+</section>
+<section className="px-6 py-20 sm:px-10 lg:px-16">
+  <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl sm:p-10 lg:p-14">
+    <p className="text-sm font-black uppercase tracking-widest text-orange-400">
+      Vent vs. Bubba
+    </p>
+
+    <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
+      From Angry Rant to Clear Request
+    </h2>
+
+    <div className="mt-8 grid gap-5 lg:grid-cols-2">
+      <div className="rounded-[1.5rem] border border-red-300/15 bg-red-500/10 p-6">
+        <p className="text-sm font-black uppercase tracking-widest text-red-200">
+          What you want to say
+        </p>
+        <p className="mt-4 text-lg font-semibold leading-8 text-slate-100">
+          “I cancelled last month and you charged me again. I’ve emailed three
+          times and nobody fixes it.”
+        </p>
+      </div>
+
+      <div className="rounded-[1.5rem] border border-emerald-300/15 bg-emerald-500/10 p-6">
+        <p className="text-sm font-black uppercase tracking-widest text-emerald-200">
+          What Bubba helps prepare
+        </p>
+        <p className="mt-4 text-lg font-semibold leading-8 text-slate-100">
+          “I am requesting a refund for the charge made after cancellation and
+          written confirmation that the account is closed and no future charges
+          will occur.”
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section className="px-6 py-20 sm:px-10 lg:px-16">
+  <div className="mx-auto max-w-7xl rounded-[2rem] border border-orange-300/20 bg-gradient-to-br from-slate-900 to-slate-800 p-6 shadow-2xl sm:p-10 lg:p-14">
+    <p className="text-sm font-black uppercase tracking-widest text-orange-400">
+      Smart Contact Routing
+    </p>
+
+    <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
+      The Right Words Matter. The Right Destination Matters Too.
+    </h2>
+
+    <p className="mt-5 text-lg leading-8 text-slate-300">
+      A clear message does not help if it goes to the wrong inbox. Bubba is
+      being built to help identify the best contact route: support, billing,
+      corporate, feedback, escalation, warranty, or another path that gives your
+      issue a better chance of being seen.
     </p>
   </div>
 </section>
