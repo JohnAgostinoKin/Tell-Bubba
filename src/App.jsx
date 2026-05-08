@@ -940,14 +940,14 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
             <form
               ref={tryFormRef}
               onSubmit={handleTrySubmit}
-              className="grid gap-4 rounded-[1.5rem] border border-white/10 bg-slate-950/70 p-5"
+             className="flex h-full flex-col gap-4 rounded-[1.5rem] border border-white/10 bg-slate-950/70 p-5"
             >
               <input type="hidden" name="form_type" value="Try Bubba Intake" />
 
               <textarea
                 name="what_happened"
                 required
-                rows="6"
+                rows="8"
                 placeholder="Tell Bubba what happened..."
                 className="w-full rounded-3xl border border-white/10 bg-white px-5 py-4 font-semibold text-slate-950 outline-none transition focus:border-orange-400"
               />
@@ -1021,7 +1021,7 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
       </section>
       <section className="px-6 py-20 sm:px-10 lg:px-16">
         <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl sm:p-10 lg:p-14">
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+          <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-stretch">
             <div>
               <p className="text-sm font-black uppercase tracking-widest text-orange-400">
                 Vent vs. Bubba
@@ -1073,7 +1073,7 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
               </p>
 
               <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
-                The Right Words Matter. The Right Destination Matters Too.
+                The Right Words Matter. The Right Destination Matters More.
               </h2>
 
               <p className="mt-5 text-lg leading-8 text-slate-300">
