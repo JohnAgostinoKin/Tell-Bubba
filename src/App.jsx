@@ -326,7 +326,7 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
             </div>
 
             <a
-              href="#early"
+              href="#try-bubba"
               className="rounded-full bg-white px-4 py-2 text-xs font-bold text-slate-950 transition hover:bg-orange-200 sm:px-5 sm:py-2.5 sm:text-sm"
             >
               Early Access
@@ -364,7 +364,7 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
 
               <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row md:justify-start">
                 <a
-                  href="#early"
+                  href="#try-bubba"
                   className="group inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-7 py-4 text-base font-black text-slate-950 shadow-xl shadow-orange-500/20 transition hover:bg-orange-400"
                 >
                   Join Early Access{" "}
@@ -881,7 +881,65 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
           </div>
         </div>
       </section>
+<section id="try-bubba" className="px-6 py-20 sm:px-10 lg:px-16">
+  <div className="mx-auto max-w-4xl rounded-[2rem] border border-orange-300/20 bg-white/[.06] p-8 text-center shadow-2xl shadow-orange-500/10 sm:p-12">
+    <p className="text-sm font-black uppercase tracking-widest text-orange-300">
+      Try Bubba
+    </p>
 
+    <h2 className="mt-3 text-4xl font-black tracking-tight text-white sm:text-5xl">
+      Try Bubba With a Real Problem
+    </h2>
+
+    <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+      Tell Bubba what happened. Bubba helps turn complaints, feedback, refund
+      requests, cancellations, and frustrating customer service problems into a
+      clear message.
+    </p>
+
+    <form
+      onSubmit={handleTrySubmit}
+      className="mx-auto mt-8 grid max-w-2xl gap-3 text-left"
+    >
+      <input type="hidden" name="form_type" value="Try Bubba Intake" />
+
+      <textarea
+        name="what_happened"
+        required
+        rows="5"
+        placeholder="Tell Bubba what happened..."
+        className="w-full rounded-3xl border-0 bg-white px-5 py-4 font-semibold text-slate-950 outline-none"
+      />
+
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="Email address"
+        className="h-14 w-full rounded-full border-0 bg-white px-5 font-semibold text-slate-950 outline-none"
+      />
+
+      <button
+        type="submit"
+        disabled={tryState.submitting}
+        className="h-14 rounded-full bg-orange-500 px-7 font-black text-slate-950 transition hover:bg-orange-400 disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {tryState.submitting ? "Sending to Bubba..." : "Tell Bubba"}
+      </button>
+
+      {tryState.succeeded && (
+        <p className="text-center font-black text-orange-200">
+          Bubba got it. We’ll review early submissions as we build the first version.
+        </p>
+      )}
+    </form>
+
+    <p className="mx-auto mt-5 max-w-xl text-center text-sm font-semibold leading-6 text-slate-400">
+      Nothing is sent to a company from this form. Tell Bubba is not a law firm
+      and does not provide legal advice.
+    </p>
+  </div>
+</section>
       <section id="early" className="px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
   <div className="mx-auto max-w-4xl rounded-[2rem] border border-orange-300/20 bg-orange-500 p-8 text-center text-slate-950 shadow-2xl shadow-orange-500/20 sm:p-12">
     <p className="text-sm font-black uppercase tracking-widest">
