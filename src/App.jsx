@@ -1018,6 +1018,47 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
     </p>
   </div>
 </section>
+      <section className="px-6 py-20 sm:px-10 lg:px-16">
+        <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-slate-900/70 p-6 shadow-2xl sm:p-10 lg:p-14">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <div>
+              <p className="text-sm font-black uppercase tracking-widest text-orange-400">
+                Built for These Problems
+              </p>
+
+              <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
+                Built for the Kinds of Problems People Give Up On
+              </h2>
+
+              <p className="mt-5 text-lg leading-8 text-slate-300">
+                Bubba is designed to help organize the facts, clarify the ask,
+                and keep the follow-up moving when customer service gets
+                frustrating.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                "Refund requests",
+                "Cancellation problems",
+                "Overcharges",
+                "Damaged products",
+                "Missing deliveries",
+                "Warranty issues",
+                "Bad service experiences",
+                "Constructive feedback",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-white/10 bg-white/[.04] px-4 py-4 text-sm font-bold text-slate-200"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
       <section id="early" className="px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
   <div className="mx-auto max-w-4xl rounded-[2rem] border border-orange-300/20 bg-orange-500 p-8 text-center text-slate-950 shadow-2xl shadow-orange-500/20 sm:p-12">
     <p className="text-sm font-black uppercase tracking-widest">
