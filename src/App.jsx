@@ -947,9 +947,9 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
               <textarea
                 name="what_happened"
                 required
-                rows="8"
+                rows="10"
                 placeholder="Tell Bubba what happened..."
-                className="w-full rounded-3xl border border-white/10 bg-white px-5 py-4 font-semibold text-slate-950 outline-none transition focus:border-orange-400"
+               className="min-h-[260px] w-full rounded-3xl border border-white/10 bg-white px-5 py-4 font-semibold text-slate-950 outline-none transition focus:border-orange-400"
               />
 
               <div className="grid gap-4 sm:grid-cols-2">
