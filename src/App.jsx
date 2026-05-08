@@ -948,13 +948,13 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
 
       <button
         type="submit"
-        disabled={state.submitting}
+        disabled={waitlistState.submitting}
         className="h-14 rounded-full bg-slate-950 px-7 font-black text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {state.submitting ? "Sending..." : "Join Waitlist"}
+        {waitlistState.submitting ? "Sending..." : "Join Waitlist"}
       </button>
 
-      {state.succeeded && (
+      {waitlistState.succeeded && (
         <p className="text-center font-black text-slate-950">
           You’re on the list. Bubba’s got you.
         </p>
