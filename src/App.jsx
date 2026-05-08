@@ -895,167 +895,127 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
           </div>
         </div>
       </section>
-<section id="try-bubba" className="px-6 py-20 sm:px-10 lg:px-16">
-  <div className="mx-auto max-w-4xl rounded-[2rem] border border-orange-300/20 bg-white/[.06] p-8 text-center shadow-2xl shadow-orange-500/10 sm:p-12">
-    <p className="text-sm font-black uppercase tracking-widest text-orange-300">
-      Try Bubba
-    </p>
-
-    <h2 className="mt-3 text-4xl font-black tracking-tight text-white sm:text-5xl">
-      Try Bubba With a Real Problem
-    </h2>
-
-    <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-      Tell Bubba what happened. Bubba helps turn complaints, feedback, refund
-      requests, cancellations, and frustrating customer service problems into a
-      clear message.
-    </p>
-
-    <form
-  ref={tryFormRef}
-  onSubmit={handleTrySubmit}
-      className="mx-auto mt-8 grid max-w-2xl gap-3 text-left"
-    >
-      <input type="hidden" name="form_type" value="Try Bubba Intake" />
-
-      <textarea
-        name="what_happened"
-        required
-        rows="5"
-        placeholder="Tell Bubba what happened..."
-        className="w-full rounded-3xl border-0 bg-white px-5 py-4 font-semibold text-slate-950 outline-none"
-      />
-
-      <input
-        type="email"
-        name="email"
-        required
-        placeholder="Email address"
-        className="h-14 w-full rounded-full border-0 bg-white px-5 font-semibold text-slate-950 outline-none"
-      />
-
-      <button
-        type="submit"
-        disabled={tryState.submitting}
-        className="h-14 rounded-full bg-orange-500 px-7 font-black text-slate-950 transition hover:bg-orange-400 disabled:cursor-not-allowed disabled:opacity-60"
-      >
-        {tryState.submitting ? "Sending to Bubba..." : "Tell Bubba"}
-      </button>
-
-      {tryState.succeeded && (
-        <p className="text-center font-black text-orange-200">
-          Bubba got it. We’ll review early submissions as we build the first version.
-        </p>
-      )}
-    </form>
-
-    <div className="mx-auto mt-6 max-w-2xl rounded-3xl border border-emerald-300/20 bg-emerald-500/10 p-5 text-left">
-  <p className="font-black text-emerald-200">Your Case Stays Contained</p>
-
-  <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
-    Nothing is sent to a company from this form. Bubba never sends anything on
-    your behalf without your review and approval.
-  </p>
-
-  <p className="mt-2 text-xs leading-6 text-slate-400">
-    Only share what is needed to explain the issue. Do not submit passwords,
-    full credit card numbers, Social Security numbers, or unnecessary sensitive
-    information. Tell Bubba is not a law firm and does not provide legal advice.
-  </p>
-</div>
-  </div>
-</section>
-<section className="px-6 py-20 sm:px-10 lg:px-16">
-  <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl sm:p-10 lg:p-14">
-    <p className="text-sm font-black uppercase tracking-widest text-orange-400">
-      Vent vs. Bubba
-    </p>
-
-    <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
-      From Angry Rant to Clear Request
-    </h2>
-
-    <div className="mt-8 grid gap-5 lg:grid-cols-2">
-      <div className="rounded-[1.5rem] border border-red-300/15 bg-red-500/10 p-6">
-        <p className="text-sm font-black uppercase tracking-widest text-red-200">
-          What you want to say
-        </p>
-        <p className="mt-4 text-lg font-semibold leading-8 text-slate-100">
-          “I cancelled last month and you charged me again. I’ve emailed three
-          times and nobody fixes it.”
-        </p>
-      </div>
-
-      <div className="rounded-[1.5rem] border border-emerald-300/15 bg-emerald-500/10 p-6">
-        <p className="text-sm font-black uppercase tracking-widest text-emerald-200">
-          What Bubba helps prepare
-        </p>
-        <p className="mt-4 text-lg font-semibold leading-8 text-slate-100">
-          “I am requesting a refund for the charge made after cancellation and
-          written confirmation that the account is closed and no future charges
-          will occur.”
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section className="px-6 py-20 sm:px-10 lg:px-16">
-  <div className="mx-auto max-w-7xl rounded-[2rem] border border-orange-300/20 bg-gradient-to-br from-slate-900 to-slate-800 p-6 shadow-2xl sm:p-10 lg:p-14">
-    <p className="text-sm font-black uppercase tracking-widest text-orange-400">
-      Smart Contact Routing
-    </p>
-
-    <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
-      The Right Words Matter. The Right Destination Matters More.
-    </h2>
-
-    <p className="mt-5 text-lg leading-8 text-slate-300">
-      A clear message does not help if it goes to the wrong inbox. Bubba is
-      being built to help identify the best contact route: support, billing,
-      corporate, feedback, escalation, warranty, or another path that gives your
-      issue a better chance of being seen.
-    </p>
-  </div>
-</section>
-      <section className="px-6 py-20 sm:px-10 lg:px-16">
-        <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-slate-900/70 p-6 shadow-2xl sm:p-10 lg:p-14">
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+      <section id="try-bubba" className="px-6 py-20 sm:px-10 lg:px-16">
+        <div className="mx-auto max-w-5xl rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl shadow-orange-500/10 sm:p-10">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
-              <p className="text-sm font-black uppercase tracking-widest text-orange-400">
-                Built for These Problems
+              <p className="text-sm font-black uppercase tracking-widest text-orange-300">
+                Try Bubba
               </p>
 
-              <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
-                Built for the Kinds of Problems People Give Up On
+              <h2 className="mt-3 text-4xl font-black tracking-tight text-white sm:text-5xl">
+                Try Bubba With a Real Problem
               </h2>
 
               <p className="mt-5 text-lg leading-8 text-slate-300">
-                Bubba is designed to help organize the facts, clarify the ask,
-                and keep the follow-up moving when customer service gets
-                frustrating.
+                Tell Bubba what happened. Give the messy version, the
+                frustrating version, or the short version. Bubba will help turn
+                it into a clearer complaint, feedback note, or resolution
+                request.
               </p>
+
+              <div className="mt-6 rounded-3xl border border-orange-300/20 bg-orange-500/10 p-5">
+                <p className="font-black text-orange-200">
+                  Nothing gets sent yet.
+                </p>
+                <p className="mt-2 leading-7 text-slate-300">
+                  This early form helps us understand what people need Bubba to
+                  handle. Tell Bubba is not a law firm and does not provide
+                  legal advice.
+                </p>
+              </div>
+
+              <div className="mt-4 rounded-3xl border border-emerald-300/20 bg-emerald-500/10 p-5">
+                <p className="font-black text-emerald-200">
+                  You stay in control.
+                </p>
+                <p className="mt-2 leading-7 text-slate-300">
+                  Bubba never sends anything to a company without your review
+                  and approval. Only submit truthful information that you are
+                  comfortable sharing with Tell Bubba.
+                </p>
+              </div>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2">
-              {[
-                "Refund Requests",
-                "Cancellation Problems",
-                "Overcharges",
-                "Damaged Products",
-                "Missing Deliveries",
-                "Warranty Issues",
-                "Bad Service Experiences",
-                "Constructive Feedback",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-white/10 bg-white/[.04] px-4 py-4 text-sm font-bold text-slate-200"
+            <form
+              ref={tryFormRef}
+              onSubmit={handleTrySubmit}
+              className="grid gap-4 rounded-[1.5rem] border border-white/10 bg-slate-950/70 p-5"
+            >
+              <input type="hidden" name="form_type" value="Try Bubba Intake" />
+
+              <textarea
+                name="what_happened"
+                required
+                rows="6"
+                placeholder="Tell Bubba what happened..."
+                className="w-full rounded-3xl border border-white/10 bg-white px-5 py-4 font-semibold text-slate-950 outline-none transition focus:border-orange-400"
+              />
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <select
+                  name="issue_type"
+                  required
+                  className="h-14 rounded-full border border-white/10 bg-white px-5 font-semibold text-slate-950 outline-none transition focus:border-orange-400"
                 >
-                  {item}
-                </div>
-              ))}
-            </div>
+                  <option value="">Issue type</option>
+                  <option value="Refund">Refund</option>
+                  <option value="Billing Problem">Billing Problem</option>
+                  <option value="Bad Service">Bad Service</option>
+                  <option value="Cancellation">Cancellation</option>
+                  <option value="Damaged Product">Damaged Product</option>
+                  <option value="Delivery Problem">Delivery Problem</option>
+                  <option value="Feedback">Feedback</option>
+                  <option value="Other">Other</option>
+                </select>
+
+                <select
+                  name="desired_outcome"
+                  required
+                  className="h-14 rounded-full border border-white/10 bg-white px-5 font-semibold text-slate-950 outline-none transition focus:border-orange-400"
+                >
+                  <option value="">What do you want?</option>
+                  <option value="Refund">Refund</option>
+                  <option value="Replacement">Replacement</option>
+                  <option value="Cancellation Confirmation">
+                    Cancellation Confirmation
+                  </option>
+                  <option value="Apology">Apology</option>
+                  <option value="Explanation">Explanation</option>
+                  <option value="Send Feedback Only">Send Feedback Only</option>
+                  <option value="Not Sure Yet">Not Sure Yet</option>
+                </select>
+              </div>
+
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Email address"
+                className="h-14 rounded-full border border-white/10 bg-white px-5 font-semibold text-slate-950 outline-none transition focus:border-orange-400"
+              />
+
+              <button
+                type="submit"
+                disabled={tryState.submitting}
+                className="h-14 rounded-full bg-orange-500 px-7 font-black text-slate-950 transition hover:bg-orange-400 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {tryState.submitting ? "Sending to Bubba..." : "Tell Bubba"}
+              </button>
+
+              {tryState.succeeded && (
+                <p className="text-center font-black text-orange-200">
+                  Bubba got it. We'll review early submissions as we build the
+                  first version.
+                </p>
+              )}
+
+              <p className="text-center text-xs leading-6 text-slate-400">
+                Nothing is sent to a company from this form. You should only
+                submit truthful information that you are comfortable sharing
+                with Tell Bubba.
+              </p>
+            </form>
           </div>
         </div>
       </section>
