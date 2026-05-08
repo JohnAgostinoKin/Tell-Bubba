@@ -949,7 +949,7 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
                 required
                 rows="12"
                 placeholder="Tell Bubba what happened..."
-               className="min-h-[260px] w-full rounded-3xl border border-white/10 bg-white px-5 py-4 font-semibold text-slate-950 outline-none transition focus:border-orange-400"
+               className="min-h-[210px] w-full rounded-3xl border border-white/10 bg-white px-5 py-4 font-semibold text-slate-950 outline-none transition focus:border-orange-400 sm:min-h-[260px]"
               />
 
               <div className="grid gap-4 sm:grid-cols-2">
