@@ -1019,6 +1019,138 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
           </div>
         </div>
       </section>
+      <section className="px-6 py-20 sm:px-10 lg:px-16">
+        <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl sm:p-10 lg:p-14">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <div>
+              <p className="text-sm font-black uppercase tracking-widest text-orange-400">
+                Vent vs. Bubba
+              </p>
+
+              <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
+                From Angry Rant to Clear Request
+              </h2>
+
+              <p className="mt-5 text-lg leading-8 text-slate-300">
+                Say it messy. Bubba makes it usable. Tell Bubba what happened in
+                your own words, and Bubba helps turn the frustration into a
+                calm, clear message a company can actually act on.
+              </p>
+            </div>
+
+            <div className="grid gap-5">
+              <div className="rounded-[1.5rem] border border-red-300/15 bg-red-500/10 p-6">
+                <p className="text-sm font-black uppercase tracking-widest text-red-200">
+                  What you want to say
+                </p>
+                <p className="mt-4 text-lg font-semibold leading-8 text-slate-100">
+                  "I cancelled last month and you charged me again. I've emailed
+                  three times and nobody fixes it."
+                </p>
+              </div>
+
+              <div className="rounded-[1.5rem] border border-emerald-300/15 bg-emerald-500/10 p-6">
+                <p className="text-sm font-black uppercase tracking-widest text-emerald-200">
+                  What Bubba helps prepare
+                </p>
+                <p className="mt-4 text-lg font-semibold leading-8 text-slate-100">
+                  "I am requesting a refund for the charge made after
+                  cancellation and written confirmation that the account is
+                  closed and no future charges will occur."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-20 sm:px-10 lg:px-16">
+        <div className="mx-auto max-w-7xl rounded-[2rem] border border-orange-300/20 bg-gradient-to-br from-slate-900 to-slate-800 p-6 shadow-2xl sm:p-10 lg:p-14">
+          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+            <div>
+              <p className="text-sm font-black uppercase tracking-widest text-orange-400">
+                Smart Contact Routing
+              </p>
+
+              <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
+                The Right Words Matter. The Right Destination Matters Too.
+              </h2>
+
+              <p className="mt-5 text-lg leading-8 text-slate-300">
+                A clear message does not help if it goes to the wrong inbox.
+                Bubba is being built to help identify the best contact route:
+                support, billing, corporate, feedback, escalation, warranty, or
+                another path that gives your issue a better chance of being
+                seen.
+              </p>
+            </div>
+
+            <div className="grid gap-4">
+              {[
+                "Support or help desk",
+                "Billing department",
+                "Corporate contact",
+                "Feedback channel",
+                "Warranty or claims path",
+                "Follow-up or escalation route",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[.04] p-4"
+                >
+                  <CheckCircle2
+                    className="shrink-0 text-emerald-300"
+                    size={21}
+                  />
+                  <span className="font-bold text-slate-200">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-20 sm:px-10 lg:px-16">
+        <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-slate-900/70 p-6 shadow-2xl sm:p-10 lg:p-14">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <div>
+              <p className="text-sm font-black uppercase tracking-widest text-orange-400">
+                Built for These Problems
+              </p>
+
+              <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
+                Built for the Kinds of Problems People Give Up On
+              </h2>
+
+              <p className="mt-5 text-lg leading-8 text-slate-300">
+                Bubba is designed to help organize the facts, clarify the ask,
+                and keep the follow-up moving when customer service gets
+                frustrating.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                "Refund requests",
+                "Cancellation problems",
+                "Overcharges",
+                "Damaged products",
+                "Missing deliveries",
+                "Warranty issues",
+                "Bad service experiences",
+                "Constructive feedback",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-white/10 bg-white/[.04] px-4 py-4 text-sm font-bold text-slate-200"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
       <section id="early" className="px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
   <div className="mx-auto max-w-4xl rounded-[2rem] border border-orange-300/20 bg-orange-500 p-8 text-center text-slate-950 shadow-2xl shadow-orange-500/20 sm:p-12">
     <p className="text-sm font-black uppercase tracking-widest">
