@@ -707,7 +707,7 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
               </p>
 
               <div className="mt-7 rounded-2xl border border-orange-300/20 bg-orange-400/10 p-5">
-                <p className="font-black text-orange-100">Company value:</p>
+                <p className="font-black text-orange-100">Company Value:</p>
                 <p className="mt-2 leading-7 text-slate-200">
                   Tell Bubba gives businesses a chance to spot problems before
                   they turn into churn, chargebacks, or public bad reviews.
@@ -1007,7 +1007,7 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
     </p>
 
     <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
-      The Right Words Matter. The Right Destination Matters Too.
+      The Right Words Matter. The Right Destination Matters More.
     </h2>
 
     <p className="mt-5 text-lg leading-8 text-slate-300">
