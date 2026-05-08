@@ -335,7 +335,7 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
                 Feedback
               </a>
               <a href="#business" className="hover:text-orange-300">
-                For Companies
+                For Partners
               </a>
             </div>
 
