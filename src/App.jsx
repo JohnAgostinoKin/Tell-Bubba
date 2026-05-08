@@ -1039,14 +1039,14 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
 
             <div className="grid gap-3 sm:grid-cols-2">
               {[
-                "Refund requests",
-                "Cancellation problems",
+                "Refund Requests",
+                "Cancellation Problems",
                 "Overcharges",
-                "Damaged products",
-                "Missing deliveries",
-                "Warranty issues",
-                "Bad service experiences",
-                "Constructive feedback",
+                "Damaged Products",
+                "Missing Deliveries",
+                "Warranty Issues",
+                "Bad Service Experiences",
+                "Constructive Feedback",
               ].map((item) => (
                 <div
                   key={item}
