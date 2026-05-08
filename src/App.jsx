@@ -899,7 +899,7 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
     </p>
 
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleWaitlistSubmit}
       className="mx-auto mt-8 grid max-w-2xl gap-3 text-left"
     >
       <input
