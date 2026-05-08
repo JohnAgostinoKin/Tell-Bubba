@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "@formspree/react";
 import {
@@ -230,6 +230,20 @@ function App() {
     const [activeLegal, setActiveLegal] = useState(null);
  const [waitlistState, handleWaitlistSubmit] = useForm("xqendbry");
 const [tryState, handleTrySubmit] = useForm("xqendbry");
+  const tryFormRef = useRef(null);
+  const waitlistFormRef = useRef(null);
+
+  useEffect(() => {
+    if (tryState.succeeded) {
+      tryFormRef.current?.reset();
+    }
+  }, [tryState.succeeded]);
+
+  useEffect(() => {
+    if (waitlistState.succeeded) {
+      waitlistFormRef.current?.reset();
+    }
+  }, [waitlistState.succeeded]);
 
   const openLegal = (page) => {
     setActiveLegal(page);
@@ -898,7 +912,8 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
     </p>
 
     <form
-      onSubmit={handleTrySubmit}
+  ref={tryFormRef}
+  onSubmit={handleTrySubmit}
       className="mx-auto mt-8 grid max-w-2xl gap-3 text-left"
     >
       <input type="hidden" name="form_type" value="Try Bubba Intake" />
@@ -956,8 +971,9 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
       service problems.
     </p>
 
-    <form
-      onSubmit={handleWaitlistSubmit}
+   <form
+  ref={waitlistFormRef}
+  onSubmit={handleWaitlistSubmit}
       className="mx-auto mt-8 grid max-w-2xl gap-3 text-left"
     >
       <input
@@ -1096,3 +1112,4 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
 }
 
 export default App;
+
