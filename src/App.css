@@ -181,4 +181,187 @@
     right: 0;
     border-right-color: var(--border);
   }
+}/* =========================================================
+   SAFE Tell Bubba background upgrade
+   Does NOT touch form input bg-white classes
+   ========================================================= */
+
+body {
+  background: #020617 !important;
+}
+
+main {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(249, 115, 22, 0.18), transparent 34%),
+    radial-gradient(circle at 88% 12%, rgba(59, 130, 246, 0.14), transparent 30%),
+    linear-gradient(180deg, #020617 0%, #0f172a 42%, #111827 100%) !important;
+}
+
+/* Visible section bands */
+main > section:nth-of-type(1) {
+  background: linear-gradient(180deg, #020617 0%, #0f172a 100%) !important;
+}
+
+main > section:nth-of-type(2) {
+  background: #0f172a !important;
+}
+
+main > section:nth-of-type(3) {
+  background: #111827 !important;
+}
+
+main > section:nth-of-type(4) {
+  background: #172554 !important;
+}
+
+main > section:nth-of-type(5) {
+  background: #1e1b4b !important;
+}
+
+main > section:nth-of-type(6) {
+  background: #0f172a !important;
+}
+
+main > section:nth-of-type(7) {
+  background: #111827 !important;
+}
+
+main > section:nth-of-type(8) {
+  background: #1e293b !important;
+}
+
+main > section:nth-of-type(9) {
+  background: #0f172a !important;
+}
+
+main > section:nth-of-type(10) {
+  background: #111827 !important;
+}
+
+main > section:nth-of-type(11) {
+  background: #172554 !important;
+}
+
+main > section:nth-of-type(12) {
+  background: #0f172a !important;
+}
+
+main > section:nth-of-type(13) {
+  background: #1e1b4b !important;
+}
+
+/* Named sections in case order changes */
+#try-bubba {
+  background: #1e1b4b !important;
+}
+
+#early {
+  background: #111827 !important;
+}
+
+#features {
+  background: #111827 !important;
+}
+
+#feedback {
+  background: #1e293b !important;
+}
+
+#business {
+  background: #172554 !important;
+}
+
+/* Make large cards visible, but do not affect inputs */
+main section > div.rounded-\[2rem\] {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+/* Keep early access orange card orange */
+#early > div {
+  background-color: #f97316 !important;
+}
+
+/* Try Bubba layout */
+#try-bubba > div {
+  max-width: 72rem !important;
+  background-color: rgba(15, 23, 42, 0.97) !important;
+  border-color: rgba(251, 146, 60, 0.45) !important;
+}
+
+#try-bubba > div > div {
+  grid-template-columns: 0.66fr 1.34fr !important;
+  align-items: stretch !important;
+}
+
+/* Stretch Try Bubba first column content */
+#try-bubba > div > div > div:first-child {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+#try-bubba > div > div > div:first-child > div {
+  flex: 1 !important;
+}
+
+/* Make the two info boxes in first column look filled */
+#try-bubba > div > div > div:first-child > div:nth-of-type(1) {
+  background-color: rgba(249, 115, 22, 0.18) !important;
+}
+
+#try-bubba > div > div > div:first-child > div:nth-of-type(2) {
+  background-color: rgba(16, 185, 129, 0.16) !important;
+}
+
+/* Try Bubba form card only — not the fields */
+#try-bubba form {
+  background-color: #020617 !important;
+  border-color: rgba(148, 163, 184, 0.45) !important;
+}
+
+/* Complaint / Feedback buttons only */
+#try-bubba button[type="button"] {
+  background-color: #1e293b !important;
+  border-color: rgba(148, 163, 184, 0.45) !important;
+}
+
+#try-bubba button[type="button"].border-orange-300 {
+  background-color: rgba(249, 115, 22, 0.24) !important;
+  border-color: rgba(253, 186, 116, 0.85) !important;
+}
+
+/* Mobile */
+@media (max-width: 1023px) {
+  #try-bubba > div > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  #try-bubba > div > div > div:first-child > div {
+    flex: initial !important;
+  }
+}/* Reduce vertical spacing between sections */
+main > section {
+  padding-top: 3.5rem !important;
+  padding-bottom: 3.5rem !important;
+}
+
+/* Slightly tighter on mobile */
+@media (max-width: 768px) {
+  main > section {
+    padding-top: 2.75rem !important;
+    padding-bottom: 2.75rem !important;
+  }
+}
+
+/* Keep hero a little roomier */
+main > section:first-of-type {
+  padding-top: 5rem !important;
+  padding-bottom: 4rem !important;
+}
+
+/* Keep final CTA from feeling cramped */
+#early {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
 }

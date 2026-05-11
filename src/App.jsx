@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import "./App.css";
 import { motion } from "framer-motion";
 import { useForm } from "@formspree/react";
 import {
@@ -228,6 +229,7 @@ const legalPages = {
 
 function App() {
     const [activeLegal, setActiveLegal] = useState(null);
+    const [caseType, setCaseType] = useState("Complaint");
  const [waitlistState, handleWaitlistSubmit] = useForm("xqendbry");
 const [tryState, handleTrySubmit] = useForm("xqendbry");
   const tryFormRef = useRef(null);
@@ -367,13 +369,11 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
               </div>
 
               <h1 className="max-w-4xl text-center text-4xl font-black leading-[.98] tracking-tight sm:text-6xl md:text-left lg:text-7xl">
-                Tell Bubba What Happened
+                Got a problem with a company? Tell Bubba.
               </h1>
 
               <p className="mt-6 max-w-2xl text-center text-base leading-7 text-slate-200 sm:text-xl sm:leading-8 md:text-left">
-                Bubba turns complaints, problems, and customer feedback into
-                clear messages companies can actually act on — then sends them
-                with your approval and helps follow up.
+                Refund denied? Subscription won’t cancel? Customer service giving you the runaround? Tell Bubba what happened, and Bubba helps turn the mess into a clear complaint, feedback message, or next-step plan.
               </p>
 
               <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row md:justify-start">
@@ -381,7 +381,7 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
                   href="#try-bubba"
                   className="group inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-7 py-4 text-base font-black text-slate-950 shadow-xl shadow-orange-500/20 transition hover:bg-orange-400"
                 >
-                  Tell Bubba{" "}
+                  Tell Bubba What Happened{" "}
                   <ArrowRight
                     className="transition group-hover:translate-x-1"
                     size={19}
@@ -896,8 +896,8 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
         </div>
       </section>
       <section id="try-bubba" className="px-6 py-20 sm:px-10 lg:px-16">
-        <div className="mx-auto max-w-5xl rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl shadow-orange-500/10 sm:p-10">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div className="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl shadow-orange-500/10 sm:p-10">
+          <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:items-stretch">
             <div>
               <p className="text-sm font-black uppercase tracking-widest text-orange-300">
                 Try Bubba
@@ -936,6 +936,35 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
                 </p>
               </div>
             </div>
+             <div className="grid gap-4">         
+            <div className="grid gap-3 sm:grid-cols-2">
+  {[
+    {
+      value: "Complaint",
+      title: "Complaint",
+      text: "I need help getting this fixed.",
+    },
+    {
+      value: "Feedback",
+      title: "Feedback",
+      text: "I’m not furious — I just want the company to know.",
+    },
+  ].map((option) => (
+    <button
+      key={option.value}
+      type="button"
+      onClick={() => setCaseType(option.value)}
+      className={`rounded-3xl border p-5 text-left transition ${
+        caseType === option.value
+          ? "border-orange-300 bg-orange-500/20 shadow-lg shadow-orange-500/10"
+          : "border-white/10 bg-white/[.04] hover:bg-white/[.07]"
+      }`}
+    >
+      <p className="text-lg font-black text-white">{option.title}</p>
+      <p className="mt-2 text-sm leading-6 text-slate-300">{option.text}</p>
+    </button>
+  ))}
+</div>
 
             <form
               ref={tryFormRef}
@@ -943,6 +972,14 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
              className="flex h-full flex-col gap-4 rounded-[1.5rem] border border-white/10 bg-slate-950/70 p-5"
             >
               <input type="hidden" name="form_type" value="Try Bubba Intake" />
+              <input type="hidden" name="case_type" value={caseType} />
+              <input
+  type="text"
+  name="company_name"
+  required
+  placeholder="Company or organization name"
+  className="h-14 rounded-full border border-white/10 bg-white px-5 font-semibold text-slate-950 outline-none transition focus:border-orange-400"
+/>
 
               <textarea
                 name="what_happened"
@@ -1016,6 +1053,7 @@ const [tryState, handleTrySubmit] = useForm("xqendbry");
                 with Tell Bubba.
               </p>
             </form>
+            </div>
           </div>
         </div>
       </section>
