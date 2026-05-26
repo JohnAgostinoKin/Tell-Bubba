@@ -1,0 +1,888 @@
+.counter {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+  margin-bottom: 24px;
+
+  &:hover {
+    border-color: var(--accent-border);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+.hero {
+  position: relative;
+
+  .base,
+  .framework,
+  .vite {
+    inset-inline: 0;
+    margin: 0 auto;
+  }
+
+  .base {
+    width: 170px;
+    position: relative;
+    z-index: 0;
+  }
+
+  .framework,
+  .vite {
+    position: absolute;
+  }
+
+  .framework {
+    z-index: 1;
+    top: 34px;
+    height: 28px;
+    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
+      scale(1.4);
+  }
+
+  .vite {
+    z-index: 0;
+    top: 107px;
+    height: 26px;
+    width: auto;
+    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
+      scale(0.8);
+  }
+}
+
+#center {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  place-content: center;
+  place-items: center;
+  flex-grow: 1;
+
+  @media (max-width: 1024px) {
+    padding: 32px 20px 24px;
+    gap: 18px;
+  }
+}
+
+#next-steps {
+  display: flex;
+  border-top: 1px solid var(--border);
+  text-align: left;
+
+  & > div {
+    flex: 1 1 0;
+    padding: 32px;
+    @media (max-width: 1024px) {
+      padding: 24px 20px;
+    }
+  }
+
+  .icon {
+    margin-bottom: 16px;
+    width: 22px;
+    height: 22px;
+  }
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+#docs {
+  border-right: 1px solid var(--border);
+
+  @media (max-width: 1024px) {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+#next-steps ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  margin: 32px 0 0;
+
+  .logo {
+    height: 18px;
+  }
+
+  a {
+    color: var(--text-h);
+    font-size: 16px;
+    border-radius: 6px;
+    background: var(--social-bg);
+    display: flex;
+    padding: 6px 12px;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: var(--shadow);
+    }
+    .button-icon {
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+      flex: 1 1 calc(50% - 8px);
+    }
+
+    a {
+      width: 100%;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+  }
+}
+
+#spacer {
+  height: 88px;
+  border-top: 1px solid var(--border);
+  @media (max-width: 1024px) {
+    height: 48px;
+  }
+}
+
+.ticks {
+  position: relative;
+  width: 100%;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -4.5px;
+    border: 5px solid transparent;
+  }
+
+  &::before {
+    left: 0;
+    border-left-color: var(--border);
+  }
+  &::after {
+    right: 0;
+    border-right-color: var(--border);
+  }
+}/* Tell Bubba stronger section/card backgrounds */
+.bg-white\/\[\.04\],
+.bg-white\/\[\.05\],
+.bg-white\/\[\.06\],
+.bg-white\/\[\.07\] {
+  background-color: rgba(15, 23, 42, 0.92) !important;
+}
+
+.hover\:bg-white\/\[\.07\]:hover,
+.hover\:bg-white\/\[\.15\]:hover,
+.hover\:bg-white\/20:hover {
+  background-color: rgba(30, 41, 59, 0.96) !important;
+}
+
+.border-white\/10,
+.border-white\/15 {
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+.ring-white\/10 {
+  --tw-ring-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+/* Try Bubba layout tuning */
+#try-bubba > div > div {
+  grid-template-columns: 0.75fr 1.25fr;
+  align-items: stretch;
+}
+
+#try-bubba form {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Keep the choice cards and form visually tied together */
+#try-bubba .grid.gap-3.sm\:grid-cols-2 {
+  width: 100%;
+
+}/* Tell Bubba stronger backgrounds for Mac displays */
+.bg-white\/\[\.04\],
+.bg-white\/\[\.05\],
+.bg-white\/\[\.06\],
+.bg-white\/\[\.07\] {
+  background-color: rgba(15, 23, 42, 0.94) !important;
+}
+
+.hover\:bg-white\/\[\.07\]:hover,
+.hover\:bg-white\/\[\.15\]:hover,
+.hover\:bg-white\/20:hover {
+  background-color: rgba(30, 41, 59, 0.96) !important;
+}
+
+.border-white\/10,
+.border-white\/15 {
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+.ring-white\/10 {
+  --tw-ring-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+/* Try Bubba card visibility */
+#try-bubba > div {
+  background-color: rgba(15, 23, 42, 0.96) !important;
+  border-color: rgba(251, 146, 60, 0.35) !important;
+}
+
+/* Try Bubba form card */
+#try-bubba form {
+  width: 100% !important;
+  min-width: 0 !important;
+  background-color: rgba(2, 6, 23, 0.98) !important;
+  border-color: rgba(148, 163, 184, 0.4) !important;
+}
+
+/* Mobile keeps normal stacking */
+@media (max-width: 1023px) {
+  #try-bubba > div > div {
+    grid-template-columns: 1fr !important;
+  }
+}/* Tell Bubba stronger backgrounds for Mac displays */
+.bg-white\/\[\.04\],
+.bg-white\/\[\.05\],
+.bg-white\/\[\.06\],
+.bg-white\/\[\.07\] {
+  background-color: rgba(15, 23, 42, 0.94) !important;
+}
+
+.hover\:bg-white\/\[\.07\]:hover,
+.hover\:bg-white\/\[\.15\]:hover,
+.hover\:bg-white\/20:hover {
+  background-color: rgba(30, 41, 59, 0.96) !important;
+}
+
+.border-white\/10,
+.border-white\/15 {
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+.ring-white\/10 {
+  --tw-ring-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+/* Try Bubba card visibility */
+#try-bubba > div {
+  background-color: rgba(15, 23, 42, 0.96) !important;
+  border-color: rgba(251, 146, 60, 0.35) !important;
+}
+
+/* Try Bubba form card */
+#try-bubba form {
+  width: 100% !important;
+  min-width: 0 !important;
+  background-color: rgba(2, 6, 23, 0.98) !important;
+  border-color: rgba(148, 163, 184, 0.4) !important;
+}
+
+/* Mobile keeps normal stacking */
+@media (max-width: 1023px) {
+  #try-bubba > div > div {
+    grid-template-columns: 1fr !important;
+  }
+}/* =========================================================
+   Tell Bubba global visual upgrade
+   Stronger backgrounds for Mac displays + better card contrast
+   ========================================================= */
+
+/* Main page background */
+main {
+  background:
+    radial-gradient(circle at top left, rgba(249, 115, 22, 0.22), transparent 32%),
+    radial-gradient(circle at 80% 10%, rgba(37, 99, 235, 0.18), transparent 30%),
+    linear-gradient(180deg, #020617 0%, #0f172a 45%, #111827 100%) !important;
+}
+
+/* Give sections a little separation */
+main > section {
+  position: relative;
+}
+
+/* Replace super-subtle transparent card backgrounds */
+.bg-white\/\[\.04\],
+.bg-white\/\[\.05\],
+.bg-white\/\[\.06\],
+.bg-white\/\[\.07\] {
+  background-color: rgba(15, 23, 42, 0.92) !important;
+}
+
+/* Stronger hover cards */
+.hover\:bg-white\/\[\.07\]:hover,
+.hover\:bg-white\/\[\.15\]:hover,
+.hover\:bg-white\/20:hover {
+  background-color: rgba(30, 41, 59, 0.96) !important;
+}
+
+/* Stronger borders */
+.border-white\/10,
+.border-white\/15 {
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+.ring-white\/10 {
+  --tw-ring-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+/* Main large content cards */
+section > div.rounded-\[2rem\],
+section > div > div.rounded-\[2rem\] {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+  border-color: rgba(148, 163, 184, 0.32) !important;
+}
+
+/* Keep orange feature cards visibly orange */
+.bg-orange-500,
+section#early > div {
+  background-color: #f97316 !important;
+}
+
+/* Keep orange-tinted cards distinct */
+.bg-orange-500\/10,
+.bg-orange-400\/10 {
+  background-color: rgba(249, 115, 22, 0.18) !important;
+}
+
+/* Keep green-tinted cards distinct */
+.bg-emerald-500\/10 {
+  background-color: rgba(16, 185, 129, 0.16) !important;
+}
+
+/* Keep blue-tinted cards distinct */
+.bg-blue-500\/10 {
+  background-color: rgba(59, 130, 246, 0.16) !important;
+}
+
+/* Keep red-tinted cards distinct */
+.bg-red-500\/10 {
+  background-color: rgba(239, 68, 68, 0.16) !important;
+}
+
+/* =========================================================
+   Try Bubba section layout/proportion fixes
+   ========================================================= */
+
+/* Make the Try Bubba card wider */
+#try-bubba > div {
+  max-width: 72rem !important;
+  background-color: rgba(15, 23, 42, 0.97) !important;
+  border-color: rgba(251, 146, 60, 0.38) !important;
+}
+
+/* Make right form side wider than left text side */
+#try-bubba > div > div {
+  grid-template-columns: 0.68fr 1.32fr !important;
+  align-items: stretch !important;
+}
+
+/* Stretch the left column to fill the full card height */
+#try-bubba > div > div > div:first-child {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+/* Let the two trust/info boxes help fill the left column */
+#try-bubba > div > div > div:first-child > div {
+  flex: 1 !important;
+}
+
+/* Make the form card strong and visible */
+#try-bubba form {
+  width: 100% !important;
+  min-width: 0 !important;
+  background-color: rgba(2, 6, 23, 0.98) !important;
+  border-color: rgba(148, 163, 184, 0.45) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Make inactive Complaint / Feedback cards visible */
+#try-bubba button[type="button"] {
+  background-color: rgba(30, 41, 59, 0.95) !important;
+  border-color: rgba(148, 163, 184, 0.4) !important;
+}
+
+/* Keep selected Complaint / Feedback card orange */
+#try-bubba button[type="button"].border-orange-300 {
+  background-color: rgba(249, 115, 22, 0.22) !important;
+  border-color: rgba(253, 186, 116, 0.75) !important;
+}
+
+/* Mobile stacks normally */
+@media (max-width: 1023px) {
+  #try-bubba > div > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  #try-bubba > div > div > div:first-child > div {
+    flex: initial !important;
+  }
+}/* =========================================================
+   Tell Bubba visible section background bands
+   ========================================================= */
+
+main {
+  background: #020617 !important;
+}
+
+/* Hero */
+main > section:nth-of-type(1) {
+  background:
+    radial-gradient(circle at top left, rgba(249, 115, 22, 0.22), transparent 35%),
+    linear-gradient(180deg, #020617 0%, #0f172a 100%) !important;
+}
+
+/* Mobile Start Here */
+main > section:nth-of-type(2) {
+  background: #0f172a !important;
+}
+
+/* Mobile What Bubba Helps With */
+main > section:nth-of-type(3) {
+  background: #111827 !important;
+}
+
+/* Vent vs Bubba */
+main > section:nth-of-type(4) {
+  background: #1e1b4b !important;
+}
+
+/* Smart Contact Routing */
+main > section:nth-of-type(5) {
+  background: #172554 !important;
+}
+
+/* How It Works */
+main > section:nth-of-type(6) {
+  background: #0f172a !important;
+}
+
+/* Features */
+main > section:nth-of-type(7) {
+  background: #111827 !important;
+}
+
+/* What Bubba Can Handle */
+main > section:nth-of-type(8) {
+  background: #1e293b !important;
+}
+
+/* Feedback */
+main > section:nth-of-type(9) {
+  background: #1f2937 !important;
+}
+
+/* Customer / Fairness / Trust cards */
+main > section:nth-of-type(10) {
+  background: #111827 !important;
+}
+
+/* Partners */
+main > section:nth-of-type(11) {
+  background: #172554 !important;
+}
+
+/* FAQ */
+main > section:nth-of-type(12) {
+  background: #0f172a !important;
+}
+
+/* Try Bubba */
+#try-bubba {
+  background: #1e1b4b !important;
+}
+
+/* Built for These Problems */
+main > section:has(p) {
+  scroll-margin-top: 90px;
+}
+
+/* Early Access */
+#early {
+  background: #111827 !important;
+}
+
+/* Footer */
+footer {
+  background: #020617 !important;
+}
+
+/* Make cards visibly different from their sections */
+main section > div.rounded-\[2rem\],
+main section .rounded-\[1\.75rem\],
+main section .rounded-\[1\.5rem\],
+main section .rounded-2xl,
+main section .rounded-3xl {
+  border-color: rgba(148, 163, 184, 0.38) !important;
+}
+
+/* Main large cards */
+main section > div.rounded-\[2rem\] {
+  background-color: rgba(15, 23, 42, 0.93) !important;
+}
+
+/* Keep orange Early Access card orange */
+#early > div {
+  background-color: #f97316 !important;
+}
+
+/* Try Bubba layout */
+#try-bubba > div {
+  max-width: 72rem !important;
+  background-color: rgba(15, 23, 42, 0.96) !important;
+  border-color: rgba(251, 146, 60, 0.45) !important;
+}
+
+#try-bubba > div > div {
+  grid-template-columns: 0.68fr 1.32fr !important;
+  align-items: stretch !important;
+}
+
+#try-bubba > div > div > div:first-child {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100% !important;
+}
+
+#try-bubba > div > div > div:first-child > div {
+  flex: 1 !important;
+}
+
+#try-bubba form {
+  width: 100% !important;
+  background-color: #020617 !important;
+  border-color: rgba(148, 163, 184, 0.45) !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4) !important;
+}
+
+#try-bubba button[type="button"] {
+  background-color: #1e293b !important;
+  border-color: rgba(148, 163, 184, 0.45) !important;
+}
+
+#try-bubba button[type="button"].border-orange-300 {
+  background-color: rgba(249, 115, 22, 0.24) !important;
+  border-color: rgba(253, 186, 116, 0.85) !important;
+}
+
+@media (max-width: 1023px) {
+  #try-bubba > div > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  #try-bubba > div > div > div:first-child > div {
+    flex: initial !important;
+  }
+}/* =========================================================
+   Tell Bubba visible section background bands
+   ========================================================= */
+
+main {
+  background: #020617 !important;
+}
+
+/* Hero */
+main > section:nth-of-type(1) {
+  background:
+    radial-gradient(circle at top left, rgba(249, 115, 22, 0.22), transparent 35%),
+    linear-gradient(180deg, #020617 0%, #0f172a 100%) !important;
+}
+
+/* Mobile Start Here */
+main > section:nth-of-type(2) {
+  background: #0f172a !important;
+}
+
+/* Mobile What Bubba Helps With */
+main > section:nth-of-type(3) {
+  background: #111827 !important;
+}
+
+/* Vent vs Bubba */
+main > section:nth-of-type(4) {
+  background: #1e1b4b !important;
+}
+
+/* Smart Contact Routing */
+main > section:nth-of-type(5) {
+  background: #172554 !important;
+}
+
+/* How It Works */
+main > section:nth-of-type(6) {
+  background: #0f172a !important;
+}
+
+/* Features */
+main > section:nth-of-type(7) {
+  background: #111827 !important;
+}
+
+/* What Bubba Can Handle */
+main > section:nth-of-type(8) {
+  background: #1e293b !important;
+}
+
+/* Feedback */
+main > section:nth-of-type(9) {
+  background: #1f2937 !important;
+}
+
+/* Customer / Fairness / Trust cards */
+main > section:nth-of-type(10) {
+  background: #111827 !important;
+}
+
+/* Partners */
+main > section:nth-of-type(11) {
+  background: #172554 !important;
+}
+
+/* FAQ */
+main > section:nth-of-type(12) {
+  background: #0f172a !important;
+}
+
+/* Try Bubba */
+#try-bubba {
+  background: #1e1b4b !important;
+}
+
+/* Built for These Problems */
+main > section:has(p) {
+  scroll-margin-top: 90px;
+}
+
+/* Early Access */
+#early {
+  background: #111827 !important;
+}
+
+/* Footer */
+footer {
+  background: #020617 !important;
+}
+
+/* Make cards visibly different from their sections */
+main section > div.rounded-\[2rem\],
+main section .rounded-\[1\.75rem\],
+main section .rounded-\[1\.5rem\],
+main section .rounded-2xl,
+main section .rounded-3xl {
+  border-color: rgba(148, 163, 184, 0.38) !important;
+}
+
+/* Main large cards */
+main section > div.rounded-\[2rem\] {
+  background-color: rgba(15, 23, 42, 0.93) !important;
+}
+
+/* Keep orange Early Access card orange */
+#early > div {
+  background-color: #f97316 !important;
+}
+
+/* Try Bubba layout */
+#try-bubba > div {
+  max-width: 72rem !important;
+  background-color: rgba(15, 23, 42, 0.96) !important;
+  border-color: rgba(251, 146, 60, 0.45) !important;
+}
+
+#try-bubba > div > div {
+  grid-template-columns: 0.68fr 1.32fr !important;
+  align-items: stretch !important;
+}
+
+#try-bubba > div > div > div:first-child {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100% !important;
+}
+
+#try-bubba > div > div > div:first-child > div {
+  flex: 1 !important;
+}
+
+#try-bubba form {
+  width: 100% !important;
+  background-color: #020617 !important;
+  border-color: rgba(148, 163, 184, 0.45) !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4) !important;
+}
+
+#try-bubba button[type="button"] {
+  background-color: #1e293b !important;
+  border-color: rgba(148, 163, 184, 0.45) !important;
+}
+
+#try-bubba button[type="button"].border-orange-300 {
+  background-color: rgba(249, 115, 22, 0.24) !important;
+  border-color: rgba(253, 186, 116, 0.85) !important;
+}
+
+@media (max-width: 1023px) {
+  #try-bubba > div > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  #try-bubba > div > div > div:first-child > div {
+    flex: initial !important;
+  }
+}/* =========================================================
+   Tell Bubba site-wide background upgrade
+   Put here so it loads with Tailwind/global CSS
+   ========================================================= */
+
+body {
+  background: #020617 !important;
+}
+
+main {
+  background:
+    radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 34%),
+    radial-gradient(circle at 80% 8%, rgba(59, 130, 246, 0.13), transparent 30%),
+    linear-gradient(180deg, #020617 0%, #0f172a 38%, #111827 100%) !important;
+}
+
+/* Make every section visibly sit on a dark navy/slate band */
+main > section {
+  background-color: #0f172a !important;
+}
+
+/* Alternate section bands so the site does not look like one black wall */
+main > section:nth-of-type(odd) {
+  background-color: #111827 !important;
+}
+
+main > section:nth-of-type(even) {
+  background-color: #0f172a !important;
+}
+
+/* Important named sections */
+#try-bubba {
+  background: #1e1b4b !important;
+}
+
+#early {
+  background: #111827 !important;
+}
+
+#how,
+#features,
+#feedback,
+#business {
+  background: #0f172a !important;
+}
+
+/* Make subtle cards actually visible */
+[class*="bg-white/["],
+[class*="bg-white"] {
+  background-color: rgba(15, 23, 42, 0.94) !important;
+}
+
+[class*="border-white/"] {
+  border-color: rgba(148, 163, 184, 0.36) !important;
+}
+
+[class*="ring-white/"] {
+  --tw-ring-color: rgba(148, 163, 184, 0.36) !important;
+}
+
+/* Keep colored cards colored */
+[class*="bg-orange-500/10"],
+[class*="bg-orange-400/10"] {
+  background-color: rgba(249, 115, 22, 0.18) !important;
+}
+
+[class*="bg-emerald-500/10"] {
+  background-color: rgba(16, 185, 129, 0.16) !important;
+}
+
+[class*="bg-blue-500/10"] {
+  background-color: rgba(59, 130, 246, 0.16) !important;
+}
+
+[class*="bg-red-500/10"] {
+  background-color: rgba(239, 68, 68, 0.16) !important;
+}
+
+/* Keep the big orange Early Access card orange */
+#early > div {
+  background-color: #f97316 !important;
+  color: #020617 !important;
+}
+
+/* Try Bubba layout and visibility */
+#try-bubba > div {
+  max-width: 72rem !important;
+  background-color: rgba(15, 23, 42, 0.97) !important;
+  border-color: rgba(251, 146, 60, 0.45) !important;
+}
+
+#try-bubba > div > div {
+  grid-template-columns: 0.68fr 1.32fr !important;
+  align-items: stretch !important;
+}
+
+/* Stretch first column content */
+#try-bubba > div > div > div:first-child {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+#try-bubba > div > div > div:first-child > div {
+  flex: 1 !important;
+}
+
+/* Strong form card */
+#try-bubba form {
+  background-color: #020617 !important;
+  border-color: rgba(148, 163, 184, 0.45) !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Complaint / Feedback buttons */
+#try-bubba button[type="button"] {
+  background-color: #1e293b !important;
+  border-color: rgba(148, 163, 184, 0.45) !important;
+}
+
+#try-bubba button[type="button"].border-orange-300 {
+  background-color: rgba(249, 115, 22, 0.24) !important;
+  border-color: rgba(253, 186, 116, 0.85) !important;
+}
+
+/* Mobile */
+@media (max-width: 1023px) {
+  #try-bubba > div > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  #try-bubba > div > div > div:first-child > div {
+    flex: initial !important;
+  }
+}
