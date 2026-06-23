@@ -273,6 +273,7 @@ function App() {
     } else {
       setWaitlistSucceeded(true);
       waitlistFormRef.current?.reset();
+      if (typeof fbq === "function") fbq("track", "Lead");
     }
   };
 
