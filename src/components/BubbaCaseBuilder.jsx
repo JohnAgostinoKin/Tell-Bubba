@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { CheckCircle2, Clipboard, Printer, RotateCcw } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { buildBubbaPreview } from "../lib/bubbaTemplates";
@@ -79,6 +79,7 @@ function BubbaCaseBuilder() {
   const [showPreview, setShowPreview] = useState(false);
   const [saved, setSaved] = useState(false);
   const [copyStatus, setCopyStatus] = useState("");
+  const submissionLock = useRef(false);
   const preview = buildBubbaPreview(answers);
 
   const updateAnswer = (field, value) => {
@@ -137,16 +138,30 @@ function BubbaCaseBuilder() {
     setCurrentStep((step) => Math.max(step - 1, 0));
   };
 
-  const buildDescription = () =>
+  const buildDescription = (submittedAt) =>
     [
+      "BUBBA BETA REVIEW CASE",
+      `Case type: ${answers.lane}`,
+      `Company name: ${answers.companyName}`,
+      `Issue category: ${answers.issueCategory}`,
       `What happened: ${answers.whatHappened}`,
       `When it happened: ${answers.whenHappened}`,
       `Reference number: ${answers.referenceNumber || "Not provided"}`,
       `What was already tried: ${answers.whatTried}`,
       `Who was contacted: ${answers.whoContacted}`,
       `What they said: ${answers.whatTheySaid}`,
+      `Desired outcome: ${answers.desiredOutcome}`,
+      `Outcome type: ${answers.outcomeType}`,
       `Evidence available: ${answers.evidence.join(", ")}`,
       `Submitted by: ${answers.name || "Name not provided"}`,
+      `Email: ${answers.email}`,
+      `Submitted at: ${submittedAt}`,
+      "",
+      "GENERATED CASE SUMMARY",
+      preview.summary,
+      "",
+      "GENERATED COMPANY MESSAGE",
+      preview.companyMessage,
     ].join("\n");
 
   const handleBuild = (event) => {
@@ -158,26 +173,36 @@ function BubbaCaseBuilder() {
   };
 
   const handleSave = async () => {
+    if (submissionLock.current || saved) return;
+    submissionLock.current = true;
     setSubmitting(true);
     setSubmissionError("");
-    const { error } = await supabase.from("complaints").insert([
-      {
-        email: answers.email.trim(),
-        company_name: answers.companyName.trim(),
-        issue_type: answers.issueCategory,
-        description: buildDescription(),
-        case_type: answers.lane,
-        desired_outcome: `${answers.outcomeType}: ${answers.desiredOutcome.trim()}`,
-      },
-    ]);
-    setSubmitting(false);
+    const submittedAt = new Date().toISOString();
 
-    if (error) {
-      setSubmissionError("Bubba hit a snag saving your case. Your answers are still here—please try again.");
-      return;
+    try {
+      const { error } = await supabase.from("complaints").insert([
+        {
+          email: answers.email.trim(),
+          company_name: answers.companyName.trim(),
+          issue_type: answers.issueCategory,
+          description: buildDescription(submittedAt),
+          case_type: answers.lane,
+          desired_outcome: `${answers.outcomeType}: ${answers.desiredOutcome.trim()}`,
+        },
+      ]);
+
+      if (error) {
+        setSubmissionError("Dang it. Bubba hit a snag. Try again in a minute.");
+        return;
+      }
+
+      setSaved(true);
+    } catch {
+      setSubmissionError("Dang it. Bubba hit a snag. Try again in a minute.");
+    } finally {
+      submissionLock.current = false;
+      setSubmitting(false);
     }
-
-    setSaved(true);
   };
 
   const startAnotherCase = () => {
@@ -188,6 +213,7 @@ function BubbaCaseBuilder() {
     setShowPreview(false);
     setSaved(false);
     setCopyStatus("");
+    submissionLock.current = false;
   };
 
   const copyMessage = async () => {
@@ -216,8 +242,8 @@ function BubbaCaseBuilder() {
               </h2>
               <p className="mt-3 leading-7 text-slate-300">
                 {saved
-                  ? "Bubba saved your information. Nothing has been sent to the company."
-                  : "Review the information below, then submit it to save your case. Nothing has been sent to the company."}
+                  ? "Bubba got it for beta review. Nothing has been sent to the company."
+                  : "Review the information below, then send it to Tell Bubba for beta review. This does not contact the company."}
               </p>
             </div>
           </div>
@@ -298,9 +324,10 @@ function BubbaCaseBuilder() {
           </section>
 
           <div className="mt-6 rounded-3xl border border-emerald-300/20 bg-emerald-500/10 p-5">
-            <p className="font-black text-emerald-200">Bubba never sends anything without your review and approval.</p>
+            <p className="font-black text-emerald-200">Nothing has been sent to the company. Bubba never sends anything without your review and approval.</p>
           </div>
           {submissionError && <p role="alert" className="mt-6 rounded-2xl bg-red-500/15 p-4 font-bold text-red-300">{submissionError}</p>}
+          {saved && <p role="status" className="mt-6 rounded-2xl bg-emerald-500/15 p-4 font-black text-emerald-200">Bubba got it. Let me sort through this mess.</p>}
           <div className="print:hidden mt-6 flex flex-wrap gap-3">
             <button
               type="button"
@@ -335,13 +362,11 @@ function BubbaCaseBuilder() {
                 className="rounded-full bg-orange-400 px-6 py-3 font-black text-white shadow-lg shadow-orange-500/30 ring-2 ring-orange-200/60 transition hover:bg-orange-300 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {submitting
-                  ? "Saving with Bubba..."
-                  : answers.lane === "Complaint"
-                    ? "Submit My Bubba Case"
-                    : "Submit My Feedback Note"}
+                  ? "Sending to Bubba..."
+                  : "Send to Bubba for Beta Review"}
               </button>
             ) : (
-              <p className="rounded-full bg-emerald-400/15 px-5 py-3 font-black text-emerald-200">Case saved with Bubba</p>
+              <p className="rounded-full bg-emerald-400/15 px-5 py-3 font-black text-emerald-200">Sent to Bubba for beta review</p>
             )}
           </div>
         </div>
