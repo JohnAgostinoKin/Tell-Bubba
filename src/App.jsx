@@ -358,7 +358,6 @@ function App() {
               <a href="#how" className="hover:text-orange-300">How It Works</a>
               <a href="#features" className="hover:text-orange-300">Features</a>
               <a href="#feedback" className="hover:text-orange-300">Feedback</a>
-              <a href="#business" className="hover:text-orange-300">For Partners</a>
             </div>
 
             <a href="#try-bubba" className="rounded-full bg-white px-4 py-2 text-xs font-bold text-slate-950 transition hover:bg-orange-200 sm:px-5 sm:py-2.5 sm:text-sm">
@@ -609,59 +608,7 @@ function App() {
         <BubbaCaseBuilder />
       </section>
 
-      {/* ── For Business / Partners Section ── */}
-      <section id="business" className="hidden px-6 py-20 sm:px-10 md:block lg:px-16">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2 lg:items-center">
-          <div>
-            <p className="text-sm font-black uppercase tracking-widest text-orange-400">For companies</p>
-            <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">Save the Customer Before You Lose Them</h2>
-            <p className="mt-5 text-lg leading-8 text-slate-300">Tell Bubba can become a private early-warning system for companies: real complaints, useful feedback, clear case files, and customers who still want to be heard.</p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {["Fewer surprise bad reviews","Cleaner customer feedback","Better recovery opportunities","Insight into repeat issues"].map((item) => (
-                <div key={item} className="flex items-center gap-3 rounded-2xl bg-white/[.04] p-4 ring-1 ring-white/10">
-                  <CheckCircle2 className="text-emerald-300" size={21} />
-                  <span className="font-semibold text-slate-200">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
 
-          <div className="rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl">
-            <div className="flex items-center gap-4 border-b border-white/10 pb-5">
-              <div className="grid h-14 w-14 place-items-center rounded-2xl bg-blue-500/15 text-blue-200"><Building2 size={28} /></div>
-              <div>
-                <p className="text-2xl font-black">Partner With Bubba</p>
-                <p className="text-slate-400">For Companies and Organizations</p>
-              </div>
-            </div>
-
-            <form ref={partnerFormRef} onSubmit={handlePartnerSubmit} className="mt-5 flex flex-col gap-4">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <input type="text" name="contact_name" required placeholder="Your name" className="h-14 rounded-full border border-white/10 bg-white px-5 font-semibold text-slate-950 outline-none transition focus:border-orange-400" />
-                <input type="text" name="company_name" required placeholder="Company name" className="h-14 rounded-full border border-white/10 bg-white px-5 font-semibold text-slate-950 outline-none transition focus:border-orange-400" />
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <input type="email" name="email" required placeholder="Email address" className="h-14 rounded-full border border-white/10 bg-white px-5 font-semibold text-slate-950 outline-none transition focus:border-orange-400" />
-                <input type="tel" name="phone" placeholder="Phone (optional)" className="h-14 rounded-full border border-white/10 bg-white px-5 font-semibold text-slate-950 outline-none transition focus:border-orange-400" />
-              </div>
-              <select name="partnership_type" required className="h-14 rounded-full border border-white/10 bg-white px-5 font-semibold text-slate-950 outline-none transition focus:border-orange-400">
-                <option value="">Partnership type</option>
-                <option value="Business Dashboard">Business Dashboard</option>
-                <option value="API Integration">API Integration</option>
-                <option value="White Label">White Label</option>
-                <option value="Reseller">Reseller</option>
-                <option value="Other">Other</option>
-              </select>
-              <textarea name="message" rows="4" placeholder="Tell us about your company and what you're looking for..." className="w-full rounded-3xl border border-white/10 bg-white px-5 py-4 font-semibold text-slate-950 outline-none transition focus:border-orange-400" />
-              <button type="submit" disabled={partnerSubmitting} className="h-14 rounded-full bg-orange-500 px-7 font-black text-slate-950 transition hover:bg-orange-400 disabled:cursor-not-allowed disabled:opacity-60">
-                {partnerSubmitting ? "Sending..." : "Get in Touch"}
-              </button>
-              {partnerSucceeded && <p className="text-center font-black text-orange-200">Got it! We'll be in touch shortly.</p>}
-              {partnerError && <p className="text-center font-black text-red-400">{partnerError}</p>}
-            </form>
-          </div>
-        </div>
-      </section>
 
       <section className="hidden px-6 py-20 sm:px-10 md:block lg:px-16">
         <div className="mx-auto max-w-5xl">
@@ -719,6 +666,60 @@ function App() {
         </div>
       </section>
 
+      {/* ── For Business / Partners Section ── */}
+      <section id="business" className="px-6 py-20 sm:px-10 lg:px-16">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2 lg:items-center">
+          <div>
+            <h2 className="text-2xl font-black text-slate-200">For companies and partners</h2>
+            <p className="mt-5 leading-8 text-slate-300">Interested in helping improve customer experiences? Tell us about your company and the partnership you have in mind.</p>
+            <p className="mt-4 leading-7 text-slate-300">Consumer complaints are not automatically shared with partner companies. Bubba never sends anything without your review and approval.</p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {["Fewer surprise bad reviews","Cleaner customer feedback","Better recovery opportunities","Insight into repeat issues"].map((item) => (
+                <div key={item} className="flex items-center gap-3 rounded-2xl bg-white/[.04] p-4 ring-1 ring-white/10">
+                  <CheckCircle2 className="text-emerald-300" size={21} />
+                  <span className="font-semibold text-slate-200">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl">
+            <div className="flex items-center gap-4 border-b border-white/10 pb-5">
+              <div className="grid h-14 w-14 place-items-center rounded-2xl bg-blue-500/15 text-blue-200"><Building2 size={28} /></div>
+              <div>
+                <p className="text-xl font-bold">Partner inquiries</p>
+                <p className="text-slate-400">Tell us how you’d like to work together</p>
+              </div>
+            </div>
+
+            <form ref={partnerFormRef} onSubmit={handlePartnerSubmit} className="mt-5 flex flex-col gap-4">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <input type="text" name="contact_name" required placeholder="Your name" className="h-14 rounded-full border border-white/10 bg-white px-5 font-semibold text-slate-950 outline-none transition focus:border-orange-400" />
+                <input type="text" name="company_name" required placeholder="Company name" className="h-14 rounded-full border border-white/10 bg-white px-5 font-semibold text-slate-950 outline-none transition focus:border-orange-400" />
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <input type="email" name="email" required placeholder="Email address" className="h-14 rounded-full border border-white/10 bg-white px-5 font-semibold text-slate-950 outline-none transition focus:border-orange-400" />
+                <input type="tel" name="phone" placeholder="Phone (optional)" className="h-14 rounded-full border border-white/10 bg-white px-5 font-semibold text-slate-950 outline-none transition focus:border-orange-400" />
+              </div>
+              <select name="partnership_type" required className="h-14 rounded-full border border-white/10 bg-white px-5 font-semibold text-slate-950 outline-none transition focus:border-orange-400">
+                <option value="">Partnership type</option>
+                <option value="Business Dashboard">Business Dashboard</option>
+                <option value="API Integration">API Integration</option>
+                <option value="White Label">White Label</option>
+                <option value="Reseller">Reseller</option>
+                <option value="Other">Other</option>
+              </select>
+              <textarea name="message" rows="4" placeholder="Tell us about your company and what you're looking for..." className="w-full rounded-3xl border border-white/10 bg-white px-5 py-4 font-semibold text-slate-950 outline-none transition focus:border-orange-400" />
+              <button type="submit" disabled={partnerSubmitting} className="h-14 rounded-full border border-white/20 bg-white/10 px-7 font-bold text-white transition hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-60">
+                {partnerSubmitting ? "Sending..." : "Get in Touch"}
+              </button>
+              {partnerSucceeded && <p className="text-center font-black text-orange-200">Got it! We'll be in touch shortly.</p>}
+              {partnerError && <p className="text-center font-black text-red-400">{partnerError}</p>}
+            </form>
+          </div>
+        </div>
+      </section>
+
       <footer className="border-t border-white/10 px-6 py-7 sm:px-10 lg:px-16">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
@@ -726,6 +727,8 @@ function App() {
               <p className="text-lg font-black text-white">Tell Bubba™ <span className="text-xs font-medium text-slate-400">at BubbaFix.com</span></p>
             </div>
             <div className="flex flex-wrap justify-center gap-x-3 gap-y-2 text-sm font-medium text-slate-300 lg:justify-end">
+              <a href="#business" className="hover:text-orange-300">For companies and partners</a>
+              <span className="text-slate-600">|</span>
               <button onClick={() => openLegal("privacy")} className="hover:text-orange-300">Privacy Policy</button>
               <span className="text-slate-600">|</span>
               <button onClick={() => openLegal("terms")} className="hover:text-orange-300">Terms of Service</button>
