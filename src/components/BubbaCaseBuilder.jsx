@@ -233,8 +233,8 @@ function BubbaCaseBuilder() {
       `Email: ${answers.email}`,
       `Submitted at: ${submittedAt}`,
       "",
-      `Bubba Case Strength: ${preview.strength.score}%`,
-      "This score reflects detail completeness, not the likelihood of a particular outcome.",
+      `Bubba Case Completeness: ${preview.strength.score}%`,
+      "This measures how complete your case information is — not whether the company will resolve it.",
       preview.strength.message,
       "Improvement tips:",
       ...(preview.strength.tips.length
@@ -351,11 +351,11 @@ function BubbaCaseBuilder() {
 
           <div className="mt-8 rounded-3xl border border-orange-300/20 bg-orange-500/10 p-5 sm:p-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <h3 id="bubba-strength-label" className="text-2xl font-black text-white">Bubba Case Strength: {preview.strength.score}%</h3>
+              <h3 id="bubba-completeness-label" className="text-2xl font-black text-white">Bubba Case Completeness: {preview.strength.score}%</h3>
             </div>
             <div
               role="progressbar"
-              aria-labelledby="bubba-strength-label"
+              aria-labelledby="bubba-completeness-label"
               aria-valuemin={0}
               aria-valuemax={100}
               aria-valuenow={preview.strength.score}
@@ -364,7 +364,7 @@ function BubbaCaseBuilder() {
               <div className="h-full bg-orange-400 print:!bg-black" style={{ width: `${preview.strength.score}%` }} />
             </div>
             <p className="mt-4 font-bold text-orange-100">{preview.strength.message}</p>
-            <p className="mt-2 text-sm text-slate-300">This score reflects detail completeness, not the likelihood of a particular outcome.</p>
+            <p className="mt-2 text-sm text-slate-300">This measures how complete your case information is — not whether the company will resolve it.</p>
             {preview.strength.tips.length > 0 && (
               <div className="mt-4">
                 <h4 className="font-black text-white">Give Bubba a little more to work with</h4>
@@ -635,7 +635,7 @@ function BubbaCaseBuilder() {
                 </label>
               )}
               {answers.dateMode === "Not sure" && (
-                <p className="text-sm leading-6 text-slate-300">That’s okay. Bubba can still build the case, but an approximate date can make it stronger.</p>
+                <p className="text-sm leading-6 text-slate-300">That’s okay. Bubba can still build the case, but an approximate date can make the information more complete.</p>
               )}
               <label className="grid gap-2 font-bold text-slate-200">
                 Order number, account number, or reference number <span className="font-normal text-slate-400">(optional)</span>

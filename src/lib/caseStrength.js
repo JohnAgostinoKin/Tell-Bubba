@@ -30,9 +30,9 @@ export function getCaseStrength(answers = {}) {
   const score = Math.round(checks.reduce((total, check) => total + check.weight * check.credit, 0));
   const tips = checks.filter((check) => check.credit < 1).map((check) => check.tip);
   const message = score >= 85
-    ? "This one’s got some muscle. Give the details one more look before sharing."
+    ? "You’ve given Bubba plenty of detail. Give it one more look before sharing."
     : score >= 60
-      ? "Bubba can work with this. A few more details or a little more proof would make it stronger."
+      ? "Bubba can work with this. A few more details or supporting records would make the information more complete."
       : "Add a few more details and Bubba can build a cleaner case.";
 
   return { score, tips, message };
