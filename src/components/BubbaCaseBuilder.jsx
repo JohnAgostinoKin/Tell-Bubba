@@ -160,6 +160,14 @@ function BubbaCaseBuilder() {
       `Email: ${answers.email}`,
       `Submitted at: ${submittedAt}`,
       "",
+      `Bubba Case Strength: ${preview.strength.score}%`,
+      "This score reflects detail completeness, not the likelihood of a particular outcome.",
+      preview.strength.message,
+      "Improvement tips:",
+      ...(preview.strength.tips.length
+        ? preview.strength.tips.map((tip) => `- ${tip}`)
+        : ["No missing-detail tips. Review the information for accuracy."]),
+      "",
       "GENERATED CASE SUMMARY",
       preview.summary,
       "",
@@ -260,9 +268,28 @@ function BubbaCaseBuilder() {
 
           <div className="mt-8 rounded-3xl border border-orange-300/20 bg-orange-500/10 p-5 sm:p-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <h3 className="text-2xl font-black text-white">Bubba Case Strength / Quick Summary</h3>
-              <span className="rounded-full bg-orange-400 px-4 py-2 text-sm font-black text-white">{preview.strength}</span>
+              <h3 id="bubba-strength-label" className="text-2xl font-black text-white">Bubba Case Strength: {preview.strength.score}%</h3>
             </div>
+            <div
+              role="progressbar"
+              aria-labelledby="bubba-strength-label"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={preview.strength.score}
+              className="mt-4 h-3 overflow-hidden rounded-full border border-orange-300/40 bg-slate-950"
+            >
+              <div className="h-full bg-orange-400 print:!bg-black" style={{ width: `${preview.strength.score}%` }} />
+            </div>
+            <p className="mt-4 font-bold text-orange-100">{preview.strength.message}</p>
+            <p className="mt-2 text-sm text-slate-300">This score reflects detail completeness, not the likelihood of a particular outcome.</p>
+            {preview.strength.tips.length > 0 && (
+              <div className="mt-4">
+                <h4 className="font-black text-white">Give Bubba a little more to work with</h4>
+                <ul className="mt-2 list-disc space-y-2 pl-5 text-slate-200">
+                  {preview.strength.tips.map((tip) => <li key={tip}>{tip}</li>)}
+                </ul>
+              </div>
+            )}
             <dl className="mt-6 grid gap-4 sm:grid-cols-2">
               {[
                 ["Case type", answers.lane],

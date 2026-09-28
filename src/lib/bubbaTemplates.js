@@ -1,3 +1,5 @@
+import { getCaseStrength } from "./caseStrength";
+
 const evidenceSuggestionsByIssue = {
   "Refund denied": ["Receipt", "Order confirmation", "Emails or chat transcript"],
   "Subscription or cancellation problem": ["Screenshots", "Emails or chat transcript", "Bank or billing statement"],
@@ -12,25 +14,6 @@ const evidenceSuggestionsByIssue = {
 };
 
 const clean = (value, fallback = "Not provided") => value?.trim() || fallback;
-
-export function getCaseStrength(answers) {
-  const detailFields = [
-    answers.companyName,
-    answers.issueCategory,
-    answers.whatHappened,
-    answers.whatTried,
-    answers.whatTheySaid,
-    answers.desiredOutcome,
-  ];
-  const completedDetails = detailFields.filter((value) => value?.trim()).length;
-  const hasReference = Boolean(answers.referenceNumber?.trim());
-  const hasEvidence = answers.evidence.some((item) => item !== "I do not have proof yet");
-  const score = completedDetails + Number(hasReference) + Number(hasEvidence);
-
-  if (score >= 8) return "Strong foundation";
-  if (score >= 6) return "Good starting point";
-  return "Needs a little more detail";
-}
 
 export function createCaseSummary(answers) {
   const timing = answers.whenHappened?.trim()
