@@ -289,29 +289,15 @@ main section > div.rounded-\[2rem\] {
   border-color: rgba(251, 146, 60, 0.45) !important;
 }
 
-#try-bubba > div > div {
-  grid-template-columns: 0.66fr 1.34fr !important;
-  align-items: stretch !important;
+#try-bubba fieldset,
+#try-bubba input,
+#try-bubba select,
+#try-bubba .bubba-case-preview * {
+  min-width: 0;
 }
 
-/* Stretch Try Bubba first column content */
-#try-bubba > div > div > div:first-child {
-  display: flex !important;
-  flex-direction: column !important;
-  height: 100% !important;
-}
-
-#try-bubba > div > div > div:first-child > div {
-  flex: 1 !important;
-}
-
-/* Make the two info boxes in first column look filled */
-#try-bubba > div > div > div:first-child > div:nth-of-type(1) {
-  background-color: rgba(249, 115, 22, 0.18) !important;
-}
-
-#try-bubba > div > div > div:first-child > div:nth-of-type(2) {
-  background-color: rgba(16, 185, 129, 0.16) !important;
+#try-bubba .bubba-case-preview {
+  overflow-wrap: anywhere;
 }
 
 /* Try Bubba form card only — not the fields */
@@ -331,16 +317,7 @@ main section > div.rounded-\[2rem\] {
   border-color: rgba(253, 186, 116, 0.85) !important;
 }
 
-/* Mobile */
-@media (max-width: 1023px) {
-  #try-bubba > div > div {
-    grid-template-columns: 1fr !important;
-  }
-
-  #try-bubba > div > div > div:first-child > div {
-    flex: initial !important;
-  }
-}/* Reduce vertical spacing between sections */
+/* Reduce vertical spacing between sections */
 main > section {
   padding-top: 3.5rem !important;
   padding-bottom: 3.5rem !important;
@@ -364,4 +341,33 @@ main > section:first-of-type {
 #early {
   padding-top: 4rem !important;
   padding-bottom: 4rem !important;
+}
+
+@media print {
+  body:has(.bubba-case-preview) main > :not(#try-bubba),
+  .bubba-case-preview button,
+  .bubba-case-preview [aria-live],
+  .bubba-case-preview [role="alert"],
+  .bubba-case-preview [role="status"] {
+    display: none !important;
+  }
+
+  body:has(.bubba-case-preview),
+  body:has(.bubba-case-preview) main,
+  #try-bubba:has(.bubba-case-preview),
+  #try-bubba .bubba-case-preview,
+  #try-bubba .bubba-case-preview * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  #try-bubba:has(.bubba-case-preview),
+  #try-bubba .bubba-case-preview {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    border: 0 !important;
+  }
 }

@@ -66,8 +66,8 @@ export function createCompanyMessage(answers) {
   if (answers.lane === "Feedback") {
     return [
       `Hello ${company} team,`,
-      `I’m writing to share constructive feedback about a ${issue.toLowerCase()}. ${happened}${timing}${reference}`,
-      `I previously tried ${tried} and contacted ${contacted}. The response I received was: ${response}`,
+      `I’m writing to share constructive feedback. Topic: ${issue}.\n\n${happened}${timing}${reference}`,
+      `What I have already tried: ${tried}\nWho I contacted: ${contacted}\nThe response I received: ${response}`,
       `I hope you’ll consider this feedback: ${outcome} I’m sharing it so your team can understand the experience and identify an opportunity to improve.`,
       `Thank you for taking the time to review this feedback.`,
       `Sincerely,\n${sender}`,
@@ -76,8 +76,8 @@ export function createCompanyMessage(answers) {
 
   return [
     `Hello ${company} team,`,
-    `I’m writing about a ${issue.toLowerCase()} that I need help resolving. ${happened}${timing}${reference}`,
-    `I have already tried ${tried} and contacted ${contacted}. The response I received was: ${response}`,
+    `I’m writing to request help resolving an issue. Topic: ${issue}.\n\n${happened}${timing}${reference}`,
+    `What I have already tried: ${tried}\nWho I contacted: ${contacted}\nThe response I received: ${response}`,
     `I’m requesting the following resolution: ${outcome} Please review the situation and let me know how you will address it.`,
     `Thank you for your prompt attention. I look forward to a clear response and resolution.`,
     `Sincerely,\n${sender}`,

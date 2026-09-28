@@ -92,13 +92,15 @@ function BubbaCaseBuilder() {
     setAnswers((current) => {
       const evidence = current.evidence.includes(item)
         ? current.evidence.filter((entry) => entry !== item)
-        : [...current.evidence, item];
+        : item === "I do not have proof yet"
+          ? [item]
+          : [...current.evidence.filter((entry) => entry !== "I do not have proof yet"), item];
       return { ...current, evidence };
     });
     setValidationMessage("");
   };
 
-  const validateStep = () => {
+  const validateStep = (step = currentStep) => {
     const messages = [
       "",
       !answers.companyName.trim() || !answers.issueCategory
@@ -123,8 +125,9 @@ function BubbaCaseBuilder() {
           : "",
     ];
 
-    const message = messages[currentStep];
+    const message = messages[step];
     setValidationMessage(message);
+    if (message) setCurrentStep(step);
     return !message;
   };
 
@@ -166,9 +169,16 @@ function BubbaCaseBuilder() {
 
   const handleBuild = (event) => {
     event.preventDefault();
-    if (!validateStep()) return;
+    if (currentStep < steps.length - 1) {
+      goNext();
+      return;
+    }
+    for (let step = 0; step < steps.length; step += 1) {
+      if (!validateStep(step)) return;
+    }
 
     setSubmissionError("");
+    setCopyStatus("");
     setShowPreview(true);
   };
 
@@ -227,7 +237,7 @@ function BubbaCaseBuilder() {
 
   if (showPreview) {
     return (
-      <div className="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl shadow-orange-500/10 sm:p-10">
+      <div className="bubba-case-preview mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl shadow-orange-500/10 sm:p-10">
         <div className="mx-auto max-w-4xl">
           <div className="flex items-start gap-4">
             <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-emerald-400 text-slate-950">
@@ -268,7 +278,7 @@ function BubbaCaseBuilder() {
                 </div>
               ))}
             </dl>
-            <p className="mt-5 font-black text-orange-100">Nothing has been sent yet.</p>
+            <p className="mt-5 font-black text-orange-100">Nothing has been sent to the company.</p>
           </div>
 
           <section className="mt-6 rounded-3xl border border-white/10 bg-slate-950/60 p-5 sm:p-6">
@@ -331,7 +341,12 @@ function BubbaCaseBuilder() {
           <div className="print:hidden mt-6 flex flex-wrap gap-3">
             <button
               type="button"
-              onClick={() => setShowPreview(false)}
+              onClick={() => {
+                setCopyStatus("");
+                setSubmissionError("");
+                setCurrentStep(0);
+                setShowPreview(false);
+              }}
               disabled={submitting || saved}
               className="rounded-full border border-white/20 bg-white/10 px-5 py-3 font-black text-white transition hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-40"
             >
@@ -540,7 +555,10 @@ function BubbaCaseBuilder() {
               Back
             </button>
             {currentStep < steps.length - 1 ? (
-              <button type="button" onClick={goNext} className="rounded-full bg-orange-400 px-7 py-4 font-black text-white shadow-lg shadow-orange-500/30 ring-2 ring-orange-200/60 transition hover:bg-orange-300">
+              <button type="button" onClick={(event) => {
+                event.preventDefault();
+                goNext();
+              }} className="rounded-full bg-orange-400 px-7 py-4 font-black text-white shadow-lg shadow-orange-500/30 ring-2 ring-orange-200/60 transition hover:bg-orange-300">
                 Next
               </button>
             ) : (
