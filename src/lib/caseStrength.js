@@ -13,7 +13,12 @@ export function getCaseStrength(answers = {}) {
   add(5, !!clean(answers.companyName), "Add the company or organization name.");
   add(5, !!clean(answers.issueCategory), "Choose the issue category that fits best.");
   detail(20, answers.whatHappened, 80, "Tell Bubba a little more about what happened—include the key details.");
-  add(10, !!clean(answers.whenHappened), "Add a date or timeframe.");
+  const hasTiming = !!clean(answers.whenHappened) && answers.dateMode !== "Not sure" && clean(answers.whenHappened) !== "Not sure";
+  checks.push({
+    weight: 10,
+    credit: hasTiming ? answers.dateMode === "Exact date" ? 1 : 0.7 : 0,
+    tip: hasTiming ? "Add an exact date if you know it; an approximate timeframe still helps." : "Add a date or approximate timeframe if you can.",
+  });
   detail(10, answers.whatTried, 20, "Add what you already tried, or explain that you haven’t taken any steps yet.");
   add(5, !!clean(answers.whoContacted), "Add who you already contacted, or say if you haven’t contacted anyone yet.");
   detail(10, answers.whatTheySaid, 20, "Add what response you got from the company, or explain that you haven’t received one yet.");

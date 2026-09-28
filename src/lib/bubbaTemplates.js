@@ -15,10 +15,15 @@ const evidenceSuggestionsByIssue = {
 
 const clean = (value, fallback = "Not provided") => value?.trim() || fallback;
 
+function timingSentence(answers) {
+  const value = answers.whenHappened?.trim();
+  if (!value || answers.dateMode === "Not sure" || value === "Not sure") return "";
+  if (answers.dateMode === "Exact date") return ` This happened on ${value}.`;
+  return ` The approximate timeframe was: ${value}.`;
+}
+
 export function createCaseSummary(answers) {
-  const timing = answers.whenHappened?.trim()
-    ? ` This happened ${answers.whenHappened.trim()}.`
-    : "";
+  const timing = timingSentence(answers);
   const reference = answers.referenceNumber?.trim()
     ? ` The reference provided is ${answers.referenceNumber.trim()}.`
     : "";
@@ -34,9 +39,7 @@ export function createCompanyMessage(answers) {
   const company = clean(answers.companyName, "Customer Support");
   const issue = clean(answers.issueCategory, "customer service issue");
   const happened = clean(answers.whatHappened);
-  const timing = answers.whenHappened?.trim()
-    ? ` This occurred ${answers.whenHappened.trim()}.`
-    : "";
+  const timing = timingSentence(answers);
   const reference = answers.referenceNumber?.trim()
     ? ` My reference number is ${answers.referenceNumber.trim()}.`
     : "";
@@ -101,6 +104,43 @@ export function getRecommendedNextSteps(answers) {
   return steps;
 }
 
+export function getSuggestedRoute(issueCategory) {
+  if (["Refund denied", "Billing or overcharge", "Subscription or cancellation problem"].includes(issueCategory)) {
+    return {
+      label: "Billing or account support",
+      explanation: "This type of issue usually belongs with the team that handles charges, refunds, subscriptions, and account changes.",
+    };
+  }
+  if (["Damaged product", "Missing delivery", "Warranty problem"].includes(issueCategory)) {
+    return {
+      label: "Customer support, claims, or warranty path",
+      explanation: "Start with the company’s official support process for delivery problems, damaged items, or warranty requests.",
+    };
+  }
+  if (issueCategory === "Bad service experience") {
+    return {
+      label: "Guest relations, customer experience, or store management",
+      explanation: "These teams usually handle service experiences and can help direct your concern to the right location or manager.",
+    };
+  }
+  if (issueCategory === "Constructive feedback") {
+    return {
+      label: "Feedback, guest relations, or customer experience channel",
+      explanation: "Look for the company’s official feedback channel to share your experience and suggestions for improvement.",
+    };
+  }
+  if (issueCategory === "Account access problem") {
+    return {
+      label: "Account support or security support",
+      explanation: "Use the company’s official account recovery or security support process for trouble signing in or accessing your account.",
+    };
+  }
+  return {
+    label: "General customer support",
+    explanation: "Start with the company’s official customer support channel and ask which team handles your issue.",
+  };
+}
+
 export function buildBubbaPreview(answers) {
   return {
     strength: getCaseStrength(answers),
@@ -108,5 +148,6 @@ export function buildBubbaPreview(answers) {
     companyMessage: createCompanyMessage(answers),
     evidenceSuggestions: getEvidenceSuggestions(answers),
     nextSteps: getRecommendedNextSteps(answers),
+    suggestedRoute: getSuggestedRoute(answers.issueCategory),
   };
 }

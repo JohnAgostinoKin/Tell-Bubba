@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Clipboard, Printer, RotateCcw } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { buildBubbaPreview } from "../lib/bubbaTemplates";
@@ -54,6 +54,7 @@ const initialAnswers = {
   companyName: "",
   issueCategory: "",
   whatHappened: "",
+  dateMode: "Exact date",
   whenHappened: "",
   referenceNumber: "",
   whatTried: "",
@@ -67,12 +68,58 @@ const initialAnswers = {
   approval: false,
 };
 
+const draftKey = "bubba-case-builder-draft-v1";
+
+function readDraft() {
+  try {
+    const draft = JSON.parse(localStorage.getItem(draftKey));
+    if (draft?.version !== 1 || !draft.answers || typeof draft.answers !== "object") return null;
+    // Only restore known intake fields with the expected types.
+    const answers = { ...initialAnswers };
+    for (const key of Object.keys(initialAnswers)) {
+      if (typeof initialAnswers[key] === "string" && typeof draft.answers[key] === "string") {
+        answers[key] = draft.answers[key];
+      }
+    }
+    answers.lane = answers.lane === "Feedback" ? "Feedback" : "Complaint";
+    if (!["Exact date", "Approximate date", "Not sure"].includes(draft.answers.dateMode)) {
+      answers.dateMode = answers.whenHappened === "Not sure" ? "Not sure" : "Approximate date";
+    }
+    if (answers.dateMode === "Not sure") answers.whenHappened = "Not sure";
+    if (!issueCategories.includes(answers.issueCategory)) answers.issueCategory = "";
+    if (!outcomeTypes.includes(answers.outcomeType)) answers.outcomeType = "";
+    answers.approval = draft.answers.approval === true;
+    answers.evidence = Array.isArray(draft.answers.evidence)
+      ? [...new Set(draft.answers.evidence.filter((item) => evidenceOptions.includes(item)))]
+      : [];
+    if (answers.evidence.length > 1) {
+      answers.evidence = answers.evidence.filter((item) => item !== "I do not have proof yet");
+    }
+    const currentStep = Number.isInteger(draft.currentStep)
+      ? Math.max(0, Math.min(draft.currentStep, steps.length - 1)) : 0;
+    return { answers, currentStep };
+  } catch {
+    // Corrupt or unavailable browser storage must not prevent case building.
+    return null;
+  }
+}
+
+function clearDraft() {
+  try {
+    localStorage.removeItem(draftKey);
+  } catch {
+    // The form remains usable when browser storage is unavailable.
+  }
+}
+
 const fieldClassName =
   "w-full rounded-3xl border border-white/10 bg-white px-5 py-4 font-semibold text-slate-950 outline-none transition placeholder:text-slate-500 focus:border-orange-400";
 
 function BubbaCaseBuilder() {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [answers, setAnswers] = useState(initialAnswers);
+  const [draft] = useState(readDraft);
+  const [currentStep, setCurrentStep] = useState(draft?.currentStep ?? 0);
+  const [answers, setAnswers] = useState(draft?.answers ?? initialAnswers);
+  const [draftRestored, setDraftRestored] = useState(Boolean(draft));
   const [validationMessage, setValidationMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submissionError, setSubmissionError] = useState("");
@@ -81,6 +128,18 @@ function BubbaCaseBuilder() {
   const [copyStatus, setCopyStatus] = useState("");
   const submissionLock = useRef(false);
   const preview = buildBubbaPreview(answers);
+
+  useEffect(() => {
+    if (saved || (currentStep === 0 && JSON.stringify(answers) === JSON.stringify(initialAnswers))) {
+      clearDraft();
+      return;
+    }
+    try {
+      localStorage.setItem(draftKey, JSON.stringify({ version: 1, answers, currentStep }));
+    } catch {
+      // Storage may be disabled or full; keep the in-memory case usable.
+    }
+  }, [answers, currentStep, saved]);
 
   const updateAnswer = (field, value) => {
     setAnswers((current) => ({ ...current, [field]: value }));
@@ -106,8 +165,8 @@ function BubbaCaseBuilder() {
       !answers.companyName.trim() || !answers.issueCategory
         ? "Bubba needs the company name and issue category before we keep going."
         : "",
-      !answers.whatHappened.trim() || !answers.whenHappened.trim()
-        ? "Give Bubba the story and when it happened so the case has a solid starting point."
+      !answers.whatHappened.trim() || (answers.dateMode !== "Not sure" && !answers.whenHappened.trim())
+        ? "Give Bubba the story, then add a date or timeframe—or choose Not sure."
         : "",
       !answers.whatTried.trim() || !answers.whoContacted.trim() || !answers.whatTheySaid.trim()
         ? "Tell Bubba what you tried, who you contacted, and what they told you."
@@ -148,6 +207,7 @@ function BubbaCaseBuilder() {
       `Company name: ${answers.companyName}`,
       `Issue category: ${answers.issueCategory}`,
       `What happened: ${answers.whatHappened}`,
+      `Date mode: ${answers.dateMode}`,
       `When it happened: ${answers.whenHappened}`,
       `Reference number: ${answers.referenceNumber || "Not provided"}`,
       `What was already tried: ${answers.whatTried}`,
@@ -167,6 +227,11 @@ function BubbaCaseBuilder() {
       ...(preview.strength.tips.length
         ? preview.strength.tips.map((tip) => `- ${tip}`)
         : ["No missing-detail tips. Review the information for accuracy."]),
+      "",
+      `Suggested route: ${preview.suggestedRoute.label}`,
+      preview.suggestedRoute.explanation,
+      "Route confidence: Early guidance",
+      "Bubba will get smarter as the routing database grows.",
       "",
       "GENERATED CASE SUMMARY",
       preview.summary,
@@ -214,6 +279,8 @@ function BubbaCaseBuilder() {
         return;
       }
 
+      clearDraft();
+      setDraftRestored(false);
       setSaved(true);
     } catch {
       setSubmissionError("Dang it. Bubba hit a snag. Try again in a minute.");
@@ -224,6 +291,9 @@ function BubbaCaseBuilder() {
   };
 
   const startAnotherCase = () => {
+    if (submissionLock.current) return;
+    clearDraft();
+    setDraftRestored(false);
     setAnswers(initialAnswers);
     setCurrentStep(0);
     setValidationMessage("");
@@ -295,6 +365,7 @@ function BubbaCaseBuilder() {
                 ["Case type", answers.lane],
                 ["Company name", answers.companyName],
                 ["Issue category", answers.issueCategory],
+                ["When it happened", answers.dateMode === "Not sure" ? "Not sure" : `${answers.dateMode}: ${answers.whenHappened}`],
                 ["Desired outcome", `${answers.outcomeType}: ${answers.desiredOutcome}`],
                 ["Evidence selected", answers.evidence.join(", ")],
                 ["Email", answers.email],
@@ -349,7 +420,19 @@ function BubbaCaseBuilder() {
           </section>
 
           <section className="mt-6 rounded-3xl border border-white/10 bg-slate-950/60 p-5 sm:p-6">
+            <h3 className="text-2xl font-black text-white">Suggested Route</h3>
+            <p className="mt-4 text-lg font-black text-orange-200">{preview.suggestedRoute.label}</p>
+            <p className="mt-3 leading-7 text-slate-300">{preview.suggestedRoute.explanation}</p>
+            <p className="mt-4 text-sm font-black text-orange-200">Early guidance</p>
+            <p className="mt-2 text-sm text-slate-300">Bubba will get smarter as the routing database grows.</p>
+            <p className="mt-4 font-black text-emerald-200">
+              {saved ? "Nothing has been sent to the company." : "Nothing has been sent yet."}
+            </p>
+          </section>
+
+          <section className="mt-6 rounded-3xl border border-white/10 bg-slate-950/60 p-5 sm:p-6">
             <h3 className="text-2xl font-black text-white">Recommended Next Steps</h3>
+            <p className="mt-4 leading-7 text-slate-300">A calm, documented case with a clear next step is easier for a company to understand, route, and respond to—and harder to brush aside. Bubba helps you stay organized and persistent, with the facts and supporting evidence ready for follow-up.</p>
             <ol className="mt-4 grid gap-3">
               {preview.nextSteps.map((step, index) => (
                 <li key={step} className="flex gap-3 leading-7 text-slate-300">
@@ -422,6 +505,14 @@ function BubbaCaseBuilder() {
         <p className="text-sm font-black uppercase tracking-widest text-orange-300">Try Bubba</p>
         <h2 className="mt-3 text-4xl font-black tracking-tight text-white sm:text-5xl">Build Your Bubba Case</h2>
         <p className="mt-4 text-lg leading-8 text-slate-300">Give Bubba the messy version. We’ll organize it one friendly step at a time.</p>
+        <p className="mt-4 leading-7 text-slate-300">Clear complaints are easier to respond to. Bubba helps organize the facts, your desired outcome, evidence, and a follow-up plan so the company can understand what happened and what you’re asking for.</p>
+        <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-300">
+          {draftRestored && <p role="status">Bubba saved your spot.</p>}
+          <p>Drafts stay in this browser when local storage is available.</p>
+          <button type="button" onClick={startAnotherCase} className="rounded-full border border-white/20 px-4 py-2 font-bold text-white">
+            Clear Draft
+          </button>
+        </div>
 
         <div className="mt-8">
           <div className="flex items-center justify-between gap-4 text-sm font-bold text-slate-300">
@@ -492,8 +583,29 @@ function BubbaCaseBuilder() {
               </label>
               <label className="grid gap-2 font-bold text-slate-200">
                 When did it happen?
-                <input className={fieldClassName} value={answers.whenHappened} onChange={(event) => updateAnswer("whenHappened", event.target.value)} placeholder="A date or approximate timeframe is fine" />
+                <select className={fieldClassName} value={answers.dateMode} onChange={(event) => {
+                  const dateMode = event.target.value;
+                  setAnswers((current) => ({ ...current, dateMode, whenHappened: dateMode === "Not sure" ? "Not sure" : "" }));
+                  setValidationMessage("");
+                  setSubmissionError("");
+                }}>
+                  <option>Exact date</option>
+                  <option>Approximate date</option>
+                  <option>Not sure</option>
+                </select>
               </label>
+              {answers.dateMode !== "Not sure" && (
+                <label className="grid gap-2 font-bold text-slate-200">
+                  {answers.dateMode}
+                  <input
+                    type={answers.dateMode === "Exact date" ? "date" : "text"}
+                    className={fieldClassName}
+                    value={answers.whenHappened}
+                    onChange={(event) => updateAnswer("whenHappened", event.target.value)}
+                    placeholder={answers.dateMode === "Approximate date" ? "Example: early September, last Friday, around Christmas, about two weeks ago" : undefined}
+                  />
+                </label>
+              )}
               <label className="grid gap-2 font-bold text-slate-200">
                 Order number, account number, or reference number <span className="font-normal text-slate-400">(optional)</span>
                 <input className={fieldClassName} value={answers.referenceNumber} onChange={(event) => updateAnswer("referenceNumber", event.target.value)} />
@@ -523,15 +635,15 @@ function BubbaCaseBuilder() {
             <fieldset className="grid gap-5">
               <legend className="text-2xl font-black text-white">What do you want?</legend>
               <label className="grid gap-2 font-bold text-slate-200">
-                Desired outcome
-                <textarea rows="5" className={fieldClassName} value={answers.desiredOutcome} onChange={(event) => updateAnswer("desiredOutcome", event.target.value)} placeholder="Tell Bubba what would make this right..." />
-              </label>
-              <label className="grid gap-2 font-bold text-slate-200">
-                Outcome type
+                What kind of outcome are you looking for?
                 <select className={fieldClassName} value={answers.outcomeType} onChange={(event) => updateAnswer("outcomeType", event.target.value)}>
                   <option value="">Choose an outcome</option>
                   {outcomeTypes.map((outcome) => <option key={outcome}>{outcome}</option>)}
                 </select>
+              </label>
+              <label className="grid gap-2 font-bold text-slate-200">
+                Tell Bubba exactly what you want the company to do.
+                <textarea rows="5" className={fieldClassName} value={answers.desiredOutcome} onChange={(event) => updateAnswer("desiredOutcome", event.target.value)} placeholder="Example: I want a full refund of $84.17, cancellation confirmation, and no further billing." />
               </label>
             </fieldset>
           )}
