@@ -247,6 +247,9 @@ function BubbaCaseBuilder() {
       "Route confidence: Early guidance",
       "Bubba will get smarter as the routing database grows.",
       "",
+      "FOLLOW-UP PLAN",
+      ...preview.followUpPlan.map((step, index) => `${index + 1}. ${step}`),
+      "",
       "GENERATED CASE SUMMARY",
       preview.summary,
       "",
@@ -466,6 +469,13 @@ function BubbaCaseBuilder() {
                   {step}
                 </li>
               ))}
+            </ol>
+          </section>
+
+          <section className="mt-6 rounded-3xl border border-white/10 bg-slate-950/60 p-5 sm:p-6">
+            <h3 className="text-2xl font-black text-white">Follow-Up Plan</h3>
+            <ol className="mt-4 list-decimal space-y-3 pl-6 leading-7 text-slate-300">
+              {preview.followUpPlan.map((step) => <li key={step}>{step}</li>)}
             </ol>
           </section>
 

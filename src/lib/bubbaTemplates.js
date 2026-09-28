@@ -141,6 +141,26 @@ export function getSuggestedRoute(issueCategory) {
   };
 }
 
+export function getFollowUpPlan(issueCategory) {
+  let records = "";
+  if (["Refund denied", "Billing or overcharge", "Subscription or cancellation problem"].includes(issueCategory)) {
+    records = " Keep billing records and any cancellation requests or confirmations together.";
+  } else if (["Missing delivery", "Damaged product", "Warranty problem"].includes(issueCategory)) {
+    records = " Keep photos, tracking details, the order number, and any warranty details together.";
+  } else if (["Bad service experience", "Constructive feedback"].includes(issueCategory)) {
+    records = " Note the location, date, and employee or manager contact if known.";
+  } else if (issueCategory === "Account access problem") {
+    records = " Note the account email, support ticket number, and security steps you have taken. Never include passwords or verification codes.";
+  }
+  return [
+    "Review and send the message yourself during beta.",
+    `Save proof: receipts, screenshots, emails, tracking numbers, and confirmation numbers.${records}`,
+    "If the company does not respond in 3–5 business days, follow up.",
+    "If they deny or ignore the issue, Bubba can help prepare the next message.",
+    "Keep a timeline of dates, names, and responses.",
+  ];
+}
+
 export function buildBubbaPreview(answers) {
   return {
     strength: getCaseStrength(answers),
@@ -149,5 +169,6 @@ export function buildBubbaPreview(answers) {
     evidenceSuggestions: getEvidenceSuggestions(answers),
     nextSteps: getRecommendedNextSteps(answers),
     suggestedRoute: getSuggestedRoute(answers.issueCategory),
+    followUpPlan: getFollowUpPlan(answers.issueCategory),
   };
 }
