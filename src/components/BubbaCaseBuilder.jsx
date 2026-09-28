@@ -600,22 +600,31 @@ function BubbaCaseBuilder() {
                 What happened?
                 <textarea rows="7" className={fieldClassName} value={answers.whatHappened} onChange={(event) => updateAnswer("whatHappened", event.target.value)} placeholder="Tell Bubba the messy version..." />
               </label>
-              <label className="grid gap-2 font-bold text-slate-200">
-                When did it happen?
-                <select className={fieldClassName} value={answers.dateMode} onChange={(event) => {
-                  const dateMode = event.target.value;
-                  setAnswers((current) => ({ ...current, dateMode, whenHappened: dateMode === "Not sure" ? "Not sure" : "" }));
-                  setValidationMessage("");
-                  setSubmissionError("");
-                }}>
-                  <option>Exact date</option>
-                  <option>Approximate date</option>
-                  <option>Not sure</option>
-                </select>
-              </label>
+              <fieldset>
+                <legend className="font-bold text-slate-200">When did it happen?</legend>
+                <div className="mt-3 grid gap-3 sm:grid-cols-3">
+                  {["Exact date", "Approximate date", "Not sure"].map((dateMode) => (
+                    <label key={dateMode} className={`flex cursor-pointer items-center gap-3 rounded-2xl border p-4 font-bold text-slate-200 focus-within:ring-2 focus-within:ring-orange-300 ${answers.dateMode === dateMode ? "border-orange-300 bg-orange-500/15" : "border-white/10 bg-white/[.04]"}`}>
+                      <input
+                        type="radio"
+                        name="dateMode"
+                        value={dateMode}
+                        checked={answers.dateMode === dateMode}
+                        onChange={() => {
+                          setAnswers((current) => ({ ...current, dateMode, whenHappened: dateMode === "Not sure" ? "Not sure" : "" }));
+                          setValidationMessage("");
+                          setSubmissionError("");
+                        }}
+                        className="h-5 w-5 shrink-0 accent-orange-500"
+                      />
+                      {dateMode}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
               {answers.dateMode !== "Not sure" && (
                 <label className="grid gap-2 font-bold text-slate-200">
-                  {answers.dateMode}
+                  {answers.dateMode === "Exact date" ? "Choose the date" : "Approximate date"}
                   <input
                     type={answers.dateMode === "Exact date" ? "date" : "text"}
                     className={fieldClassName}
@@ -624,6 +633,9 @@ function BubbaCaseBuilder() {
                     placeholder={answers.dateMode === "Approximate date" ? "Example: early September, last Friday, around Christmas, about two weeks ago" : undefined}
                   />
                 </label>
+              )}
+              {answers.dateMode === "Not sure" && (
+                <p className="text-sm leading-6 text-slate-300">That’s okay. Bubba can still build the case, but an approximate date can make it stronger.</p>
               )}
               <label className="grid gap-2 font-bold text-slate-200">
                 Order number, account number, or reference number <span className="font-normal text-slate-400">(optional)</span>
