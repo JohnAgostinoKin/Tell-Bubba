@@ -127,7 +127,20 @@ function BubbaCaseBuilder() {
   const [saved, setSaved] = useState(false);
   const [copyStatus, setCopyStatus] = useState("");
   const submissionLock = useRef(false);
+  const builderRef = useRef(null);
+  const previousView = useRef({ currentStep, showPreview });
   const preview = buildBubbaPreview(answers);
+
+  useEffect(() => {
+    const previous = previousView.current;
+    previousView.current = { currentStep, showPreview };
+    if (previous.currentStep === currentStep && previous.showPreview === showPreview) return;
+    const target = builderRef.current?.querySelector(showPreview ? "h2" : "fieldset");
+    if (target) {
+      target.tabIndex = -1;
+      target.focus();
+    }
+  }, [currentStep, showPreview]);
 
   useEffect(() => {
     if (saved || (currentStep === 0 && JSON.stringify(answers) === JSON.stringify(initialAnswers))) {
@@ -315,7 +328,7 @@ function BubbaCaseBuilder() {
 
   if (showPreview) {
     return (
-      <div className="bubba-case-preview mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl shadow-orange-500/10 sm:p-10">
+      <div ref={builderRef} className="bubba-case-preview mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl shadow-orange-500/10 sm:p-10">
         <div className="mx-auto max-w-4xl">
           <div className="flex items-start gap-4">
             <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-emerald-400 text-slate-950">
@@ -506,7 +519,7 @@ function BubbaCaseBuilder() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl shadow-orange-500/10 sm:p-10">
+    <div ref={builderRef} className="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl shadow-orange-500/10 sm:p-10">
       <div className="mx-auto max-w-4xl">
         <p className="text-sm font-black uppercase tracking-widest text-orange-300">Try Bubba</p>
         <h2 className="mt-3 text-4xl font-black tracking-tight text-white sm:text-5xl">Build Your Bubba Case</h2>
@@ -545,7 +558,7 @@ function BubbaCaseBuilder() {
                 ].map((option) => (
                   <label
                     key={option.value}
-                    className={`cursor-pointer rounded-3xl border p-5 transition ${answers.lane === option.value ? "border-orange-300 bg-orange-500/20 shadow-lg shadow-orange-500/10" : "border-white/10 bg-white/[.04] hover:bg-white/[.07]"}`}
+                    className={`cursor-pointer rounded-3xl border p-5 transition focus-within:ring-2 focus-within:ring-orange-300 ${answers.lane === option.value ? "border-orange-300 bg-orange-500/20 shadow-lg shadow-orange-500/10" : "border-white/10 bg-white/[.04] hover:bg-white/[.07]"}`}
                   >
                     <input
                       className="sr-only"
