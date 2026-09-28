@@ -432,7 +432,7 @@ function BubbaCaseBuilder() {
 
           <section className="mt-6 rounded-3xl border border-white/10 bg-slate-950/60 p-5 sm:p-6">
             <h3 className="text-2xl font-black text-white">Recommended Next Steps</h3>
-            <p className="mt-4 leading-7 text-slate-300">A calm, documented case with a clear next step is easier for a company to understand, route, and respond to—and harder to brush aside. Bubba helps you stay organized and persistent, with the facts and supporting evidence ready for follow-up.</p>
+            <p className="mt-4 leading-7 text-slate-300">This is the point of Bubba: organize the facts, the proof, the route, and the follow-up so the company can understand the issue faster and see that you’re prepared to stay on it.</p>
             <ol className="mt-4 grid gap-3">
               {preview.nextSteps.map((step, index) => (
                 <li key={step} className="flex gap-3 leading-7 text-slate-300">
@@ -505,7 +505,7 @@ function BubbaCaseBuilder() {
         <p className="text-sm font-black uppercase tracking-widest text-orange-300">Try Bubba</p>
         <h2 className="mt-3 text-4xl font-black tracking-tight text-white sm:text-5xl">Build Your Bubba Case</h2>
         <p className="mt-4 text-lg leading-8 text-slate-300">Give Bubba the messy version. We’ll organize it one friendly step at a time.</p>
-        <p className="mt-4 leading-7 text-slate-300">Clear complaints are easier to respond to. Bubba helps organize the facts, your desired outcome, evidence, and a follow-up plan so the company can understand what happened and what you’re asking for.</p>
+        <p className="mt-4 leading-7 text-slate-300">Bubba helps turn messy complaints into clear, documented, follow-up-ready cases. A calm case with facts, evidence, and a specific request is easier for a company to understand — and harder to brush aside.</p>
         <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-300">
           {draftRestored && <p role="status">Bubba saved your spot.</p>}
           <p>Drafts stay in this browser when local storage is available.</p>
