@@ -241,8 +241,9 @@ function BubbaCaseBuilder() {
         ? preview.strength.tips.map((tip) => `- ${tip}`)
         : ["No missing-detail tips. Review the information for accuracy."]),
       "",
+      "SMART ROUTING PREVIEW",
       `Suggested route: ${preview.suggestedRoute.label}`,
-      preview.suggestedRoute.explanation,
+      `Why Bubba recommends it: ${preview.suggestedRoute.explanation}`,
       "Route confidence: Early guidance",
       "Bubba will get smarter as the routing database grows.",
       "",
@@ -433,13 +434,25 @@ function BubbaCaseBuilder() {
           </section>
 
           <section className="mt-6 rounded-3xl border border-white/10 bg-slate-950/60 p-5 sm:p-6">
-            <h3 className="text-2xl font-black text-white">Suggested Route</h3>
-            <p className="mt-4 text-lg font-black text-orange-200">{preview.suggestedRoute.label}</p>
-            <p className="mt-3 leading-7 text-slate-300">{preview.suggestedRoute.explanation}</p>
-            <p className="mt-4 text-sm font-black text-orange-200">Early guidance</p>
+            <h3 className="text-2xl font-black text-white">Smart Routing Preview</h3>
+            <dl className="mt-4 space-y-4">
+              <div>
+                <dt className="text-sm font-bold text-slate-300">Suggested route</dt>
+                <dd className="mt-1 text-lg font-black text-orange-200">{preview.suggestedRoute.label}</dd>
+              </div>
+              <div>
+                <dt className="text-sm font-bold text-slate-300">Why Bubba recommends it</dt>
+                <dd className="mt-1 leading-7 text-slate-300">{preview.suggestedRoute.explanation}</dd>
+              </div>
+              <div>
+                <dt className="text-sm font-bold text-slate-300">Confidence</dt>
+                <dd className="mt-1 text-sm font-black text-orange-200">Early guidance</dd>
+              </div>
+            </dl>
             <p className="mt-2 text-sm text-slate-300">Bubba will get smarter as the routing database grows.</p>
+            <p className="mt-4 border-t border-white/10 pt-4 text-sm leading-6 text-slate-300">The free preview gives general routing guidance. Bubba Case Pack will add company-specific routing, escalation guidance, and follow-up steps when available.</p>
             <p className="mt-4 font-black text-emerald-200">
-              {saved ? "Nothing has been sent to the company." : "Nothing has been sent yet."}
+              {saved ? "Nothing has been sent to the company." : "Nothing has been sent yet."} Bubba never sends anything without your review and approval.
             </p>
           </section>
 
