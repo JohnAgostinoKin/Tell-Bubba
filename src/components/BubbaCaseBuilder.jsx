@@ -443,6 +443,12 @@ function BubbaCaseBuilder() {
             </ol>
           </section>
 
+          <section className="print:hidden mt-6 rounded-3xl border border-white/10 bg-white/[.04] p-5 sm:p-6">
+            <p className="text-sm font-bold text-slate-400">Coming soon</p>
+            <h3 className="mt-2 text-2xl font-black text-white">Coming Soon: Bubba Case Pack</h3>
+            <p className="mt-4 leading-7 text-slate-300">Bubba’s basic case preview is free during beta. A future paid upgrade may include a polished complaint letter, escalation version, evidence checklist, follow-up plan, suggested route, and printable case packet.</p>
+          </section>
+
           <div className="mt-6 rounded-3xl border border-emerald-300/20 bg-emerald-500/10 p-5">
             <p className="font-black text-emerald-200">Nothing has been sent to the company. Bubba never sends anything without your review and approval.</p>
           </div>
