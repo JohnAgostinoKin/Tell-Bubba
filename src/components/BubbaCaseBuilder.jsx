@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Clipboard, Printer, RotateCcw } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { buildBubbaPreview } from "../lib/bubbaTemplates";
+import BubbaMascot from "./BubbaMascot";
 
 const steps = [
   "Choose your lane",
@@ -358,9 +359,7 @@ function BubbaCaseBuilder() {
       <div ref={builderRef} className="bubba-case-preview mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/[.04] p-6 shadow-2xl shadow-orange-500/10 sm:p-10">
         <div className="mx-auto max-w-4xl">
           <div className="flex items-start gap-4">
-            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-emerald-400 text-slate-950">
-              <CheckCircle2 size={26} />
-            </div>
+            <BubbaMascot variant="caseReady" className="h-14 w-14 sm:h-20 sm:w-20" alt="Bubba with your prepared case" />
             <div>
               <p className="text-sm font-black uppercase tracking-widest text-emerald-300">
                 {saved ? "Bubba case saved" : "Bubba case preview"}
@@ -513,6 +512,13 @@ function BubbaCaseBuilder() {
           </div>
           {submissionError && <p role="alert" className="mt-6 rounded-2xl bg-red-500/15 p-4 font-bold text-red-300">{submissionError}</p>}
           {saved && <p role="status" className="mt-6 rounded-2xl bg-emerald-500/15 p-4 font-black text-emerald-200">Bubba got it. Let me sort through this mess.</p>}
+          <div className="mt-6 flex items-center gap-4 break-inside-avoid">
+            <BubbaMascot variant="approvedSeal" className="h-16 w-16" alt="Bubba Approved seal: prepared by Bubba, not approved by the company" />
+            <div>
+              <p className="font-bold text-slate-200">Prepared by Bubba</p>
+              <p className="mt-1 text-sm text-slate-400">This seal means prepared by Bubba, not approved by the company.</p>
+            </div>
+          </div>
           <div className="print:hidden mt-6 flex flex-wrap gap-3">
             <button
               type="button"
@@ -569,7 +575,10 @@ function BubbaCaseBuilder() {
       <div className="mx-auto max-w-4xl">
         <p className="text-sm font-black uppercase tracking-widest text-orange-300">Try Bubba</p>
         <h2 className="mt-3 text-4xl font-black tracking-tight text-white sm:text-5xl">Build Your Bubba Case</h2>
-        <p className="mt-4 text-lg leading-8 text-slate-300">Give Bubba the messy version. We’ll organize it one friendly step at a time.</p>
+        <div className="mt-4 flex items-center gap-4">
+          <BubbaMascot variant="listening" className="h-16 w-16 sm:h-20 sm:w-20" alt="Bubba listening and ready to help" />
+          <p className="text-lg leading-8 text-slate-300">Tell Bubba what happened. He’ll help organize the mess.</p>
+        </div>
         <p className="mt-4 leading-7 text-slate-300">Bubba helps turn messy complaints into clear, documented, follow-up-ready cases. A calm case with facts, evidence, and a specific request is easier for a company to understand — and harder to brush aside.</p>
         <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-300">
           {draftRestored && <p role="status">Bubba saved your spot.</p>}

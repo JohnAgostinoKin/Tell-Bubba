@@ -3,6 +3,7 @@ import "./App.css";
 import { motion } from "framer-motion";
 import { supabase } from "./lib/supabase";
 import BubbaCaseBuilder from "./components/BubbaCaseBuilder";
+import BubbaMascot from "./components/BubbaMascot";
 import {
   MessageSquareText,
   Send,
@@ -341,13 +342,7 @@ function App() {
         <div className="relative mx-auto max-w-7xl">
           <nav className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur sm:px-5">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 sm:h-11 sm:w-11">
-                <svg viewBox="0 0 64 64" className="h-full w-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect width="64" height="64" rx="18" fill="#f97316" />
-                  <path d="M15 16h34c3.3 0 6 2.7 6 6v18c0 3.3-2.7 6-6 6H31l-11 9v-9h-5c-3.3 0-6-2.7-6-6V22c0-3.3 2.7-6 6-6z" fill="#020617" />
-                  <text x="32" y="39" textAnchor="middle" fontFamily="Arial, Helvetica, sans-serif" fontSize="25" fontWeight="900" fill="#ffffff">B</text>
-                </svg>
-              </div>
+              <BubbaMascot variant="icon" className="h-9 w-9 sm:h-10 sm:w-10" decorative />
               <div>
                 <p className="text-lg font-black tracking-tight sm:text-xl">Tell Bubba™</p>
                 <p className="text-xs text-slate-300">at BubbaFix.com</p>
